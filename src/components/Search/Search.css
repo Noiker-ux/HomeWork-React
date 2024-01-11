@@ -1,0 +1,8 @@
+.search-block{
+    margin-top: 80px;
+    width: 590px;
+}
+.search{
+    display: flex;
+    gap: 8px;
+}

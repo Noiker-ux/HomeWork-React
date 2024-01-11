@@ -1,9 +1,11 @@
 
 import './Paragraph.css';
 
-function Paragraph({ children }) {
+function Paragraph({ children, className }) {
+	const cl = 'paragraph' + (className?' ' + className: '');
+
 	return (
-		<p className='paragraph paragraph-small'>{children}</p>
+		<p className={cl}>{children}</p>
 	);
 }
 

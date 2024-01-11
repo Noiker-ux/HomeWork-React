@@ -1,9 +1,9 @@
 
 import './Handling.css';
 
-function Handling({ children }) {
+function Handling({ text }) {
 	return (
-		<h1 className="handling">{children}</h1>
+		<h1 className="handling">{text}</h1>
 	);
 }
 

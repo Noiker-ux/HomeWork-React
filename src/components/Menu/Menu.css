@@ -1,0 +1,29 @@
+.menu-list{
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+.menu-link{
+    text-decoration: none;
+    color:  #A8AEBF;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px; 
+    letter-spacing: 0.32px;
+
+    transition: color 0.25s;
+}
+.menu-link:hover{
+
+    color: #fff
+}
+.counter{
+    background-color: #7B6EF6;
+    border-radius: 50%;
+    width: 24px;
+    text-align: center;
+    color: #fff;
+}
