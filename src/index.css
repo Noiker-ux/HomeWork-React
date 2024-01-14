@@ -26,6 +26,12 @@ body{
   margin: 0 auto;
 }
 
-h1{
+
+a{
+  text-decoration: none;
+}
+*{
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }

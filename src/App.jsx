@@ -4,6 +4,9 @@ import Search from './components/Search/Search';
 // Layouts
 import Header from './layouts/Header/Header';
 import Body from './layouts/Body/Body';
+import FilmList from './components/FilmsList/FilmsList';
+// data
+import { INIT_DATA } from './assets/InitData';
 
 function App() {
 
@@ -12,6 +15,7 @@ function App() {
 			<Header />
 			<Body>
 				<Search />
+				<FilmList data={INIT_DATA}/>
 			</Body>
 		</>
 	);
