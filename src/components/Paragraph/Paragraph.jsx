@@ -1,11 +1,9 @@
-
-import './Paragraph.css';
+import style from './Paragraph.module.css';
+import cn from 'classnames';
 
 function Paragraph({ children, className }) {
-	const cl = 'paragraph' + (className?' ' + className: '');
-
 	return (
-		<p className={cl}>{children}</p>
+		<p className={cn(style['paragraph'], (className?style[className]:''))}>{children}</p>
 	);
 }
 

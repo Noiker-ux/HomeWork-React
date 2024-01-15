@@ -1,10 +1,10 @@
 
-import './Logo.css';
+import style from './Logo.module.css';
 
 function Logo() {
 	return (
-		<a href="#" className="logo-link">
-			<img src="./Logo.svg" alt="Логотип" className='logo-img' />
+		<a href="#" className={style['logo-link']}>
+			<img src="./Logo.svg" alt="Логотип" className={style['logo-img']} />
 		</a>
 	);
 }

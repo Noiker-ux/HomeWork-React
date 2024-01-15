@@ -1,5 +1,5 @@
 
-import './Search.css';
+import style from './Search.module.css';
 import Handling from '../Handling/Handling';
 import Paragraph from '../Paragraph/Paragraph';
 import Input from '../Input/Input';
@@ -16,10 +16,10 @@ function Search() {
 	};
 
 	return (
-		<div className="search-block">
+		<div className={style['search-block']}>
 			<Handling text="Поиск" />
 			<Paragraph className="paragraph-small">Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.</Paragraph>
-			<div className="search">
+			<div className={style['search']}>
 				<Input placeholder='Введите название' icon="./search.svg"/>
 				<Button text='Искать' onClick={querySearch}/>
 			</div>

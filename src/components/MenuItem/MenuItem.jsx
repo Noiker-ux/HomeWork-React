@@ -1,10 +1,10 @@
 
-import './MenuItem.css';
+import style from './MenuItem.module.css';
 
 function MenuItem({text, link}, icon) {
 	return (
-		<li className="menu-item">
-			<a href={link} className="menu-link">{text}{icon}</a>
+		<li className={style['menu-item']}>
+			<a href={link} className={style['menu-link']}>{text}{icon}</a>
 		</li>
 	);
 }

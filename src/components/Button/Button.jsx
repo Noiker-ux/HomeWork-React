@@ -1,9 +1,9 @@
-
-import './Button.css';
+import style from './Button.module.css';
+import cn from 'classnames';
 
 function Button({ text, onClick }) {
 	return (
-		<button className='button primary' onClick={onClick}>{text}</button>
+		<button className={cn(style['button'], style['primary'])} onClick={onClick}>{text}</button>
 	);
 }
 

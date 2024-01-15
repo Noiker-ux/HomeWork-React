@@ -1,9 +1,9 @@
 
-import './Handling.css';
+import style from './Handling.module.css';
 
 function Handling({ text }) {
 	return (
-		<h1 className="handling">{text}</h1>
+		<h1 className={style['handling']}>{text}</h1>
 	);
 }
 
