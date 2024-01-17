@@ -1,0 +1,7 @@
+.auth-block{
+    margin-top: 80px;
+    display: flex;
+    max-width: 200px;
+    gap: 8px;
+    flex-direction: column;
+}
