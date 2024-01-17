@@ -14,7 +14,7 @@ function Search() {
 
 
 	const querySearch = () => {
-		const valueInput = document.querySelector('.input').value;
+		const valueInput = refInput.current.value;
 		setFilms(valueInput);
 		console.log(valueInput);
 	};

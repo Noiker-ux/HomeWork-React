@@ -15,7 +15,7 @@ function FilmsList({ data }) {
 	}
 
 	const sortStars = (a,b) =>{
-		if (a.stars<b.stars){
+		if (a.stars < b.stars){
 			return 1;
 		}
 		return -1;

@@ -35,6 +35,7 @@
 }
 .poster-img{
     width: 266px;
+    height: 400px;
 }
 .like-wrapper{
     display: flex;
