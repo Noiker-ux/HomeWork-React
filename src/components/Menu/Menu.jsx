@@ -1,16 +1,18 @@
 
 import style from './Menu.module.css';
+import { UserContext } from '../../context/user.context';
+import { useContext } from 'react';
 
-function Menu({ profiles, onLog }) {
+function Menu() {
+	const { profiles, saveDataProfiles } = useContext(UserContext);
 
 	const exit = (e) => {
 		e.preventDefault();
 		let dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles'));
 		const idProfile = dataFromLocalStorage.findIndex(profile=>profile.name===profiles.name);
-		console.log(idProfile);
 		dataFromLocalStorage[idProfile].isLogined=false;
 		localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
-		onLog({'name': null, isLogined:false});
+		saveDataProfiles({'name': null, isLogined:false});
 	};
 
 	return (

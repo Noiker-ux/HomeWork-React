@@ -3,13 +3,13 @@ import './Header.css';
 import Menu from '../../components/Menu/Menu';
 import Logo from '../../components/Logo/Logo';
 
-function Header({ profiles, onLog }) {
+function Header() {
 	return (
 		<header>
 			<div className="container">
 				<div className="header-inner">
 					<Logo />
-					<Menu onLog={onLog} profiles={profiles} />
+					<Menu/>
 				</div>
 			</div>
 		</header>

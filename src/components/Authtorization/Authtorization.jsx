@@ -3,9 +3,11 @@ import style from './Authtorization.module.css';
 import Handling from '../Handling/Handling';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
+import { UserContext } from '../../context/user.context';
 
-function Authtorization({ onLog }) {
+function Authtorization() {
+	const { saveDataProfiles } = useContext(UserContext);
 
 	const refInputLog = useRef();
 	const refButtonLog = useRef();
@@ -23,14 +25,14 @@ function Authtorization({ onLog }) {
 			};
 			dataFromLocalStorage.push(newProfile);
 			localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
-			onLog(newProfile);
+			saveDataProfiles(newProfile);
 		} else {
 			const idProfile = (dataFromLocalStorage.findIndex(e=>e.name===inpValue));
 			let stateProfile = dataFromLocalStorage[idProfile];
 			stateProfile.isLogined = true;
 			dataFromLocalStorage[idProfile].isLogined=true;
 			localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
-			onLog(stateProfile);
+			saveDataProfiles(stateProfile);
 		}
 	};
 

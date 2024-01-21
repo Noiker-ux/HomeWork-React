@@ -8,29 +8,20 @@ import FilmList from './components/FilmsList/FilmsList';
 // data
 import { INIT_DATA } from './assets/InitData';
 import Authtorization from './components/Authtorization/Authtorization';
-import { useState } from 'react';
+import { UserContextProvider } from './context/user.context';
+
 
 function App() {
-	const [profiles, setProfiles] = useState({name:null,isLogined:false});
-
-
-	const saveDataProfiles = (newProfile) => {
-		setProfiles(old => ({
-			...old,
-			'name': newProfile.name,
-			'isLogined': newProfile.isLogined
-		}));
-	};
 
 	return (
-		<>
-			<Header profiles={profiles} onLog={saveDataProfiles}/>
+		<UserContextProvider>
+			<Header />
 			<Body>
-				<Authtorization onLog={saveDataProfiles} />
+				<Authtorization/>
 				<Search />
 				<FilmList data={INIT_DATA}/>
 			</Body>
-		</>
+		</UserContextProvider>
 	);
 }
 
