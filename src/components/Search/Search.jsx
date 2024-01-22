@@ -26,8 +26,7 @@ function Search() {
 			<Handling text="Поиск" />
 			<Paragraph className="paragraph-small">Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.</Paragraph>
 			<div className={style['search']}>
-				<Input placeholder='Введите название' icon="./search.svg" ref={refInput
-				}/>
+				<Input placeholder='Введите название' icon="./search.svg" ref={refInput}/>
 				<Button text='Искать' onClick={querySearch} ref={refButton}/>
 			</div>
 		</div>

@@ -7,7 +7,7 @@ export const UserContext = createContext({
 });
 
 export const UserContextProvider = ({ children }) => {
-	const [profiles, setProfiles] = useState({name:null,isLogined:false});
+	const [profiles, setProfiles] = useState({name:UserContext.name,isLogined:UserContext.isLogined});
     
 	const saveDataProfiles = (newProfile) => {
 		setProfiles({

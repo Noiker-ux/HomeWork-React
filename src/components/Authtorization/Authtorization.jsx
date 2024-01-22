@@ -14,20 +14,20 @@ function Authtorization() {
 
 	let dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles'));
 
-	const authtorization = (event) => {
+	const handleAuth = (event) => {
 		event.preventDefault();
-		const inpValue = refInputLog.current.value;
-		const haveProfile = (dataFromLocalStorage.find(e=>e.name === inpValue));
-		if (haveProfile===undefined && inpValue.trim().length){
+		const inputValue = refInputLog.current.value;
+		const haveProfile = (dataFromLocalStorage.find(e=>e.name === inputValue));
+		if (!haveProfile && inputValue.trim().length){
 			const newProfile = {
-				'name': inpValue,
+				'name': inputValue,
 				'isLogined': true
 			};
 			dataFromLocalStorage.push(newProfile);
 			localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
 			saveDataProfiles(newProfile);
 		} else {
-			const idProfile = (dataFromLocalStorage.findIndex(e=>e.name===inpValue));
+			const idProfile = dataFromLocalStorage.findIndex(e => e.name === inputValue);
 			let stateProfile = dataFromLocalStorage[idProfile];
 			stateProfile.isLogined = true;
 			dataFromLocalStorage[idProfile].isLogined=true;
@@ -36,14 +36,11 @@ function Authtorization() {
 		}
 	};
 
-
-
-
 	return (
 		<form className={style['auth-block']}>
 			<Handling text="Вход" />
 			<Input placeholder='Ваше имя' ref={refInputLog}/>
-			<Button text='Войти в профиль' ref={refButtonLog} onClick={authtorization}/>
+			<Button text='Войти в профиль' ref={refButtonLog} onClick={handleAuth}/>
 		</form>
 	);
 }

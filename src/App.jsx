@@ -12,6 +12,9 @@ import { UserContextProvider } from './context/user.context';
 
 
 function App() {
+	if (!localStorage.getItem('profiles')){
+		localStorage.setItem('profiles','[]');
+	}
 
 	return (
 		<UserContextProvider>

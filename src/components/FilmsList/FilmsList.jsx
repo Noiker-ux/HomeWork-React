@@ -5,7 +5,7 @@ import Handling from '../Handling/Handling';
 import Paragraph from '../Paragraph/Paragraph';
 
 function FilmsList({ data }) {
-	if (data.length === 0){
+	if (!data.length){
 		return (
 			<div className={style['no-films']}>
 				<Handling text='Упс... Ничего не найдено :(' />
