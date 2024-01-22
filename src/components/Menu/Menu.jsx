@@ -1,6 +1,7 @@
 
 import style from './Menu.module.css';
 import { UserContext } from '../../context/user.context';
+import Favourites from '../Favourites/Favourites';
 import { useContext } from 'react';
 
 function Menu() {
@@ -24,9 +25,7 @@ function Menu() {
 					</a>
 				</li>
 				<li className={style['menu-item']}>
-					<a href="#" className={style['menu-link']}>
-						Мои фильмы<span className={style['counter']}>2</span>
-					</a>
+					<Favourites />
 				</li>
 				<li className={style['menu-item']}>
 					<a href="#" className={style['menu-link']}>
