@@ -4,7 +4,9 @@ import FilmCard from '../FilmCard/FilmCard';
 import Handling from '../Handling/Handling';
 import Paragraph from '../Paragraph/Paragraph';
 
-function FilmsList({ data }) {
+import { IFilm } from '../../assets/InitData'
+
+function FilmsList({ data }:{data: IFilm[]}) {
 	if (!data.length){
 		return (
 			<div className={style['no-films']}>
@@ -14,7 +16,7 @@ function FilmsList({ data }) {
 		);
 	}
 
-	const sortStars = (a,b) =>{
+	const sortStars = (a:IFilm, b:IFilm) =>{
 		if (a.stars < b.stars){
 			return 1;
 		}
@@ -24,7 +26,7 @@ function FilmsList({ data }) {
 	return (
 		<div className={style['film-list']}>
 			{
-				data.sort(sortStars).map(film => (
+				data.sort(sortStars).map((film:IFilm) => (
 					<FilmCard props={film} key={film.id}/>
 				))
 			}

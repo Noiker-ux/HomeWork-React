@@ -1,7 +1,8 @@
 
+import { ReactNode } from 'react';
 import './Body.css';
 
-function Body({children}) {
+function Body({children}:{children:ReactNode}) {
 	return (
 		<div className="body">
 			<div className="container">
