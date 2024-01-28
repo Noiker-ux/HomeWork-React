@@ -6,8 +6,12 @@ import Button from '../Button/Button';
 import { MouseEvent, useContext, useRef } from 'react';
 import { UserContext } from '../../context/user.context';
 import { IContextValue, IUser } from '../../context/userContext.types'
+import { useNavigate } from "react-router-dom";
+
+
 
 function Authtorization() {
+	let navigate = useNavigate();
 	const { saveDataProfile } = useContext<IContextValue>(UserContext);
 
 	const refInputLog = useRef<HTMLInputElement | null>(null);
@@ -36,6 +40,8 @@ function Authtorization() {
 				localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
 				saveDataProfile(stateProfile);
 			}
+			refInputLog.current.value = '';
+			return navigate("/");
 		} else {
 			console.log('Ошибка авторизации')
 		}

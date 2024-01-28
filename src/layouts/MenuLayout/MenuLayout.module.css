@@ -13,3 +13,6 @@ header{
     display: flex;
     gap: 16px;
 }
+.outlet{
+    margin-top: 120px;
+}
