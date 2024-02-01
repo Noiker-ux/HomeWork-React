@@ -1,54 +1,62 @@
-.film-card{
-    border-radius: 12px;
-    background: rgba(32, 40, 62, 0.80);
-    backdrop-filter: blur(40px);
-    padding: 8px 8px 16px 8px;
-    position: relative;
-    transition: background .25s;
-    cursor: pointer;
+.film-card {
+  border-radius: 12px;
+  background: rgba(32, 40, 62, 0.8);
+  backdrop-filter: blur(40px);
+  padding: 8px 8px 16px 8px;
+  position: relative;
+  transition: background 0.25s;
+  cursor: pointer;
+  width: 282px;
+  height: auto;
 }
-.film-card:hover{
-    background: rgba(39, 48, 95, 0.8);
+.film-card:hover {
+  background: rgba(39, 48, 95, 0.8);
 }
-.poster{
-    position: relative;
+.poster {
+  position: relative;
 }
-.star{
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    padding: 4px 5px;
-    font-size: 16px;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(4px);
-    cursor: pointer;
+.star {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 5px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
 }
-.star-icon{
-    width: 16px;
-    height: 16px;
+.star-icon {
+  width: 16px;
+  height: 16px;
 }
-.star-text{
-    margin-left: 4px;
-    line-height: 24px;
-    color: #FFAD49;
+.star-text {
+  margin-left: 4px;
+  line-height: 24px;
+  color: #ffad49;
 }
-.poster-img{
-    width: 266px;
-    height: 400px;
+.poster-img {
+  width: 266px;
+  height: 260px;
+  object-fit: cover;
 }
-.like-wrapper{
-    display: flex;
-    margin-top: 16px;
-    color: #7B6EF6;
-    align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px; /* 150% */
-    letter-spacing: 0.32px;
+.like-wrapper {
+  display: flex;
+  margin-top: 16px;
+  color: #7b6ef6;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.32px;
 }
-.name{
-    font-weight: 600;
-    margin-top: 16px;
+.name {
+  font-weight: 600;
+  white-space: normal;
+  margin-top: 16px;
+}
+
+.image-gallery-slide .image-gallery-image {
+  object-fit: cover !important;
 }

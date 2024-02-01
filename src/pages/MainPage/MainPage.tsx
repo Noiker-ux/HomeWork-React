@@ -1,10 +1,14 @@
+import { useLoaderData } from "react-router-dom";
 import FilmsList from "../../components/FilmsList/FilmsList";
 import Search from "../../components/Search/Search";
-import { INIT_DATA } from '../../assets/InitData'
 
-export default function MainPage(){
-    return <>
-    <Search />
-    <FilmsList data={INIT_DATA} />
+export default function MainPage() {
+  const data = useLoaderData();
+
+  return (
+    <>
+      <Search />
+      <FilmsList data={data} />
     </>
+  );
 }
