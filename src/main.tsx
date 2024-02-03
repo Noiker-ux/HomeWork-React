@@ -12,10 +12,7 @@ import DetailPage from "./pages/DetailPage/DetailPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import axios from "axios";
 import { PREFIX, API_KEY } from "./helpers/API";
-
-const randomPage = () => {
-  return Math.floor(Math.random() * (30 - 1 + 1) + 1);
-};
+import { IFilm } from "./assets/InitData";
 
 const router = createBrowserRouter([
   {
@@ -31,10 +28,8 @@ const router = createBrowserRouter([
         ),
         errorElement: <>Ошибка</>,
         loader: async () => {
-          const { data } = await axios.get(
-            `${PREFIX}/games?page=${randomPage()}&key=${API_KEY}`
-          );
-          return data.results;
+          const { data } = await axios.get(`${PREFIX}/games?key=${API_KEY}`);
+          return data.results as IFilm[];
         },
       },
       {

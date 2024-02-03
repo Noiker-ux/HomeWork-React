@@ -5,7 +5,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useState } from "react";
 
-function FilmCard({ props }: { props: IFilm }) {
+function FilmCard(this: any, { props }: { props: IFilm }) {
   const {
     id,
     background_image,
@@ -54,7 +54,7 @@ function FilmCard({ props }: { props: IFilm }) {
     >
       <div className={style["film-card-wrap"]}>
         <div className={style["poster"]}>
-          {!hovSlider && (
+          {!hovSlider && background_image && (
             <img
               src={background_image}
               alt="poster"
@@ -62,7 +62,15 @@ function FilmCard({ props }: { props: IFilm }) {
             />
           )}
 
-          {slider && hovSlider && (
+          {!hovSlider && !background_image && (
+            <img
+              src="./public/noImage.jpg"
+              alt="poster"
+              className={style["poster-img"]}
+            />
+          )}
+
+          {slider && hovSlider && background_image && (
             <ImageGallery
               items={slider}
               showPlayButton={false}
