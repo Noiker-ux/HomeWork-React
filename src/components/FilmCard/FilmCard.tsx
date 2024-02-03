@@ -6,36 +6,51 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import { useState } from "react";
 
 function FilmCard({ props }: { props: IFilm }) {
-  const { id, background_image, name, rating, short_screenshots } = props;
+  const {
+    id,
+    background_image,
+    name,
+    rating,
+    short_screenshots,
+    released,
+    parent_platforms,
+  } = props;
 
+  // state Hoverr
   const [hovSlider, setHovSlider] = useState<boolean>(false);
+  // state array images for slider
   const [slider, setSlider] = useState<any>([]);
 
   let images: any = [];
+
+  //  function for show slider
+  const handleShowSlider = () => {
+    short_screenshots?.map((e) => {
+      const item = {
+        original: e.image,
+        thumbnail: e.image,
+        thumbnailHeight: 49,
+        originalHeight: 200,
+      };
+
+      images.push(item);
+    });
+    setHovSlider(true);
+    setSlider(images);
+  };
+
+  // functiom for close Slider
+  const handleCloseSlider = () => {
+    setHovSlider(false);
+    setSlider([]);
+  };
 
   return (
     <Link
       to={`/movie/${id}`}
       className={style["film-card"]}
-      onMouseOver={() => {
-        short_screenshots?.map((e) => {
-          const item = {
-            original: e.image,
-            thumbnail: e.image,
-            thumbnailHeight: 50.7,
-            originalHeight: 200,
-          };
-
-          images.push(item);
-        });
-        setHovSlider(true);
-        setSlider(images);
-        console.log(images);
-      }}
-      onMouseOut={() => {
-        setHovSlider(false);
-        setSlider([]);
-      }}
+      onMouseOver={handleShowSlider}
+      onMouseOut={handleCloseSlider}
     >
       <div className={style["film-card-wrap"]}>
         <div className={style["poster"]}>
@@ -46,29 +61,40 @@ function FilmCard({ props }: { props: IFilm }) {
               className={style["poster-img"]}
             />
           )}
+
           {slider && hovSlider && (
             <ImageGallery
               items={slider}
               showPlayButton={false}
               slideInterval={2500}
               slideOnThumbnailOver={true}
-              showIndex={true}
+              showIndex={false}
               autoPlay={true}
               showNav={false}
               showFullscreenButton={false}
             />
           )}
-
-          <p className={style["star"]}>
-            <img
-              src="./public/star.svg"
-              alt="star"
-              className={style["star-icon"]}
-            />
-            <span className={style["star-text"]}>{String(rating)}</span>
-          </p>
         </div>
+
         <div className={style["info"]}>
+          <div className={style["top"]}>
+            <span>{released?.slice(0, 4)}</span>
+            <div className={style["platforms"]}>
+              {parent_platforms
+                ? parent_platforms.map((e) => (
+                    <img
+                      className={style["platformIco"]}
+                      src={`/public/platformsIcons/${e.platform.slug}.svg`}
+                      alt={e.platform.slug}
+                    />
+                  ))
+                : ""}
+            </div>
+            <div className={style["rating-wrapper"]}>
+              <img src="./public/Star.svg" alt="Star" />
+              <span>{rating}</span>
+            </div>
+          </div>
           <p className={style["name"]}>{name}</p>
           <div className={style["like-wrapper"]}>
             <img src="./public/like.svg" alt="Like" />
