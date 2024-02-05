@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router-dom";
-import FilmsList from "../../components/FilmsList/FilmsList";
+import FilmsList from "../../components/GamesList/GamesList";
 import Search from "../../components/Search/Search";
 import { useEffect, useState } from "react";
-import { IFilm } from "../../assets/InitData";
+import { IFilm } from "../../assets/IGame";
 import axios from "axios";
 import { API_KEY, PREFIX } from "../../helpers/API";
 

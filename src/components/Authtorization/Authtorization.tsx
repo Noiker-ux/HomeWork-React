@@ -41,7 +41,7 @@ function Authtorization() {
 				saveDataProfile(stateProfile);
 			}
 			refInputLog.current.value = '';
-			return navigate("/");
+			navigate("/");
 		} else {
 			console.log('Ошибка авторизации')
 		}

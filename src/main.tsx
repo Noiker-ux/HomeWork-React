@@ -12,7 +12,8 @@ import DetailPage from "./pages/DetailPage/DetailPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import axios from "axios";
 import { PREFIX, API_KEY } from "./helpers/API";
-import { IFilm } from "./assets/InitData";
+import { IFilm } from "./assets/IGame";
+import { RequireApi } from "./helpers/RequireApi";
 
 const router = createBrowserRouter([
   {
@@ -22,9 +23,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Suspense fallback={<>Загрузка...</>}>
-            <MainPage />
-          </Suspense>
+          <RequireApi>
+            <Suspense fallback={<>Загрузка...</>}>
+              <MainPage />
+            </Suspense>
+          </RequireApi>
         ),
         errorElement: <>Ошибка</>,
         loader: async () => {
@@ -38,15 +41,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/favorites",
-        element: <FavoritesPage />,
+        element: <RequireApi><FavoritesPage /></RequireApi>,
       },
       {
         path: "/profile",
-        element: <ProfilePage />,
+        element: <RequireApi><ProfilePage /></RequireApi>,
       },
       {
         path: "/movie/:id",
-        element: <DetailPage />,
+        element: <RequireApi><DetailPage /></RequireApi>,
+        loader: async ({ params }) => {
+          const { data }: { data: IFilm } = await axios.get(
+            `${PREFIX}/games/${params.id}?key=${API_KEY}`
+          );
+          return data;
+        },
       },
     ],
   },

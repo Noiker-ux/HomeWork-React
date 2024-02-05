@@ -1,37 +1,93 @@
-import axios from "axios";
-import { useParams } from "react-router";
-import { API_KEY, PREFIX } from "../../helpers/API";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import style from "./DetailPage.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Handling from "../../components/Handling/Handling";
-import { IFilm } from "../../assets/InitData";
+import { IFilm } from "../../assets/IGame";
 
 export default function DetailPage() {
-  const [detail, setDetail] = useState<IFilm | null>();
-  const { id } = useParams();
+  const data = useLoaderData();
+  const [detail, setDetail] = useState(data as IFilm);
+  const {
+    name,
+    background_image,
+    released,
+    parent_platforms,
+    description,
+    genres,
+    platforms,
+  } = detail;
 
-  const handleLoadData = async () => {
-    try {
-      const { data } = await axios.get<IFilm>(
-        `${PREFIX}/games/${id}?key=${API_KEY}`
-      );
-      setDetail(data);
-    } catch (e) {
-      console.error(e);
-    }
+
+
+  
+  const handleConvertRelease = (date: string) => {
+    let dateFromString = new Date(date);
+    let formatter = new Intl.DateTimeFormat("en", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+    return formatter.format(dateFromString);
   };
 
-  useEffect(() => {
-    handleLoadData();
-  }, []);
+  const handleBlockGenre = () => {
+    let genresStr: string = "";
+    {
+      genres && genres.map((e) => (genresStr += e.name + ", "));
+    }
+    return genresStr.substring(0, genresStr.length - 2);
+  };
+
+
+
 
   return (
-    <>
+    <div className={style["detail"]}>
       <div className={style["top"]}>
-        <Link to="../">Поиск фильмов</Link>
-        {detail?.name && <Handling text={detail?.name}></Handling>}
+        <Link to="../">Поиск игр</Link>
+        <Handling text={name} />
       </div>
-    </>
+      <div className={style["body"]}>
+        <div className={style["bodyTop"]}>
+          <img className={style["image"]} src={background_image} alt="Poster" />
+          <div className={style["right-panel"]}>
+            <div className={style["right-panel-top"]}>
+              {released && 
+              <span className={style["date"]}>
+                {handleConvertRelease(released)}
+              </span>}
+              <div className={style["platforms"]}>
+                {parent_platforms &&
+                  parent_platforms.map((e) => (
+                    <img
+                      className={style["platformIcon"]}
+                      src={`../public/platformsIcons/${e.platform.slug}.svg`}
+                      alt={e.platform.slug}
+                    />
+                  ))}
+              </div>
+            </div>
+            <div className={style["right-panle-body"]}>
+              <div className={style["infoblock"]}>
+                <span className={style["infoblock-title"]}>Genre</span>
+                <span className={style["infoblock-text"]}>
+                  {handleBlockGenre()}
+                </span>
+              </div>
+
+              <div className={style["infoblock"]}>
+                <span className={style["infoblock-title"]}>Platforms</span>
+                <span className={style["infoblock-text"]}>
+                  {}
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: description as string }}></div>
+      </div>
+    </div>
   );
 }

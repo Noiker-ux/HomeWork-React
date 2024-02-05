@@ -1,11 +1,11 @@
-import style from "./FilmCard.module.css";
-import { IFilm } from "../../assets/InitData";
+import style from "./GameCard.module.css";
+import { IGame } from "../../assets/IGame";
 import { Link } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useState } from "react";
 
-function FilmCard(this: any, { props }: { props: IFilm }) {
+function GameCard({ props }: { props: IGame }) {
   const {
     id,
     background_image,
@@ -91,6 +91,7 @@ function FilmCard(this: any, { props }: { props: IFilm }) {
               {parent_platforms
                 ? parent_platforms.map((e) => (
                     <img
+                      key={e.platform.id}
                       className={style["platformIco"]}
                       src={`/public/platformsIcons/${e.platform.slug}.svg`}
                       alt={e.platform.slug}
@@ -114,4 +115,4 @@ function FilmCard(this: any, { props }: { props: IFilm }) {
   );
 }
 
-export default FilmCard;
+export default GameCard;

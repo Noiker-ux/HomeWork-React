@@ -1,11 +1,10 @@
-import style from "./FilmsList.module.css";
-import FilmCard from "../FilmCard/FilmCard";
+import style from "./GamesList.module.css";
+import GameCard from "../GameCard/GameCard";
 import Handling from "../Handling/Handling";
 import Paragraph from "../Paragraph/Paragraph";
+import { IGame } from "../../assets/IGame";
 
-import { IFilm } from "../../assets/InitData";
-
-function FilmsList({ data }: { data: any }) {
+function GamesList({ data }: { data: any }) {
   if (!data.length) {
     return (
       <div className={style["no-films"]}>
@@ -20,11 +19,11 @@ function FilmsList({ data }: { data: any }) {
 
   return (
     <div className={style["film-list"]}>
-      {data.map((film: IFilm) => (
-        <FilmCard props={film} key={film.id} />
+      {data.map((game: IGame) => (
+        <GameCard props={game} key={game.id} />
       ))}
     </div>
   );
 }
 
-export default FilmsList;
+export default GamesList;

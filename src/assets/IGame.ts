@@ -1,4 +1,4 @@
-export interface IFilm {
+export interface IGame {
   id: number;
   name: string;
   background_image: string;
@@ -7,6 +7,8 @@ export interface IFilm {
   ratings_count?: number;
   released?: string;
   added?: number;
+  description?: string;
+  platforms?: string;
   metacritic?: number;
   playtime?: number;
   parent_platforms?: IPlatforms[];

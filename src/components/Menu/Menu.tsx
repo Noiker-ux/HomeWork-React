@@ -15,11 +15,11 @@ function Menu() {
 	const exit = (e:MouseEvent) => {
 		e.preventDefault();
 		let dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles') || '[]');
-		const idProfile = dataFromLocalStorage.findIndex((profile:IUser) => profile.name===profile.name);
+		const idProfile = dataFromLocalStorage.findIndex((elprofile:IUser) => elprofile.name===profile.name);
 		dataFromLocalStorage[idProfile].isLogined=false;
 		localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
 		saveDataProfile({'name': null, isLogined:false});
-		return navigate("/");
+		navigate("/login");
 	};
 
 	return (
@@ -29,14 +29,14 @@ function Menu() {
 					<NavLink to={'/'} className={({ isActive }) => classNames(style['menu-link'], {
 						[style.active]:isActive
 					})}>
-						Поиск фильмов
+						Поиск игр
 					</NavLink>
 				</li>
 				<li className={style['menu-item']}>
 					<NavLink to={'/favorites'} className={({ isActive }) => classNames(style['menu-link'], {
 						[style.active]:isActive
 					})}>
-						Мои фильмы
+						Мои игры
 						<span className={style['counter']}>2</span>
 					</NavLink>
 				</li>

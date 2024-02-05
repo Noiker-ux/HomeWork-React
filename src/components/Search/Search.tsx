@@ -3,7 +3,7 @@ import Handling from "../Handling/Handling";
 import Paragraph from "../Paragraph/Paragraph";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 function Search({ setFilms }: any) {
   const refInput = useRef<HTMLInputElement | null>(null);
@@ -21,7 +21,7 @@ function Search({ setFilms }: any) {
       <Handling text="Поиск" />
       <Paragraph
         className="paragraph-small"
-        text="Введите название фильма, сериала или мультфильма для поиска и добавления в избранное."
+        text="Введите название игры или дополнения для поиска и добавления в избранное."
       ></Paragraph>
       <div className={style["search"]}>
         <Input
