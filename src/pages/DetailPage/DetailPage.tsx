@@ -3,11 +3,11 @@ import { useState } from "react";
 import style from "./DetailPage.module.css";
 import { Link, useLoaderData } from "react-router-dom";
 import Handling from "../../components/Handling/Handling";
-import { IFilm } from "../../assets/IGame";
+import { IGame } from "../../assets/IGame";
 
 export default function DetailPage() {
   const data = useLoaderData();
-  const [detail, setDetail] = useState(data as IFilm);
+  const [detail, setDetail] = useState(data as IGame);
   const {
     name,
     background_image,
@@ -31,15 +31,15 @@ export default function DetailPage() {
     return formatter.format(dateFromString);
   };
 
+
+
   const handleBlockGenre = () => {
-    let genresStr: string = "";
-    {
-      genres && genres.map((e) => (genresStr += e.name + ", "));
+    let genresArr: string[] = [];
+    if (genres){
+       genres.map((e) => genresArr.push(e.name));
     }
-    return genresStr.substring(0, genresStr.length - 2);
+    return genresArr.join(', ')
   };
-
-
 
 
   return (

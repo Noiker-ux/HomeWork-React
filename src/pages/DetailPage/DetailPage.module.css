@@ -61,3 +61,9 @@ p {
 .infoblock-title {
   color: #767e94;
 }
+.infoblock-text{
+  display: flex;
+}
+.infoblock-text>*{
+  margin: 0;
+}
