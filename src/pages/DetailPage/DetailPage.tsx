@@ -3,7 +3,11 @@ import { useState } from "react";
 import style from "./DetailPage.module.css";
 import { Link, useLoaderData } from "react-router-dom";
 import Handling from "../../components/Handling/Handling";
-import { IGame } from "../../assets/IGame";
+import { IDevelopers, IGame, IGenres, IPlatforms, IPublishers, IRatings } from "../../assets/IGame";
+import { IPropsRatingLine } from "../../components/RatingLine/IPropsRatingLine.props";
+import RatingLine from "../../components/RatingLine/RatingLine";
+import RatingBlock from "../../components/RatingBlock/RatingBlock";
+import StoresBlock from "../../components/StoresBlock/StoresBlock";
 
 export default function DetailPage() {
   const data = useLoaderData();
@@ -15,7 +19,14 @@ export default function DetailPage() {
     parent_platforms,
     description,
     genres,
+    rating,
     platforms,
+    publishers,
+    esrb_rating,
+    stores,
+    playtime,
+    ratings,
+    developers
   } = detail;
 
 
@@ -41,18 +52,42 @@ export default function DetailPage() {
     return genresArr.join(', ')
   };
 
+  const handleJoiner = (key:any) => {
+    let resArr: string[] = [];
+    switch (key) {
+      case genres:
+        key.map((e:IGenres) => resArr.push(e.name));
+        break;
+      case platforms:
+        key.map((e:IPlatforms) => resArr.push(e.platform.name))
+        break;
+      case publishers:
+        key.map((e:IPublishers) => resArr.push(e.name))
+        break;
+      case developers:
+        key.map((e:IDevelopers) => resArr.push(e.name))
+        break;
+      default:
+        break;
+    }
+    return resArr.join(', ')
+  }
+
+  console.log(data);
+  
 
   return (
     <div className={style["detail"]}>
-      <div className={style["top"]}>
-        <Link to="../">Поиск игр</Link>
-        <Handling text={name} />
-      </div>
       <div className={style["body"]}>
         <div className={style["bodyTop"]}>
-          <img className={style["image"]} src={background_image} alt="Poster" />
+          <div>
+            <img className={style["image"]} src={background_image} alt="Poster" />
+            <span className={style["infoblock-title"]}>Description</span>
+            <div dangerouslySetInnerHTML={{ __html: description as string }}></div>
+          </div>
           <div className={style["right-panel"]}>
             <div className={style["right-panel-top"]}>
+              <div className={style["right-panel-top-left"]}>
               {released && 
               <span className={style["date"]}>
                 {handleConvertRelease(released)}
@@ -67,27 +102,76 @@ export default function DetailPage() {
                     />
                   ))}
               </div>
+              <span className={style['playtime']}>AVERAGE PLAYTIME: {playtime} HOURS</span>
+              </div>
+              <span className={style['rating']}><img src="/public/star.svg" alt='star'/>{rating}</span>
             </div>
-            <div className={style["right-panle-body"]}>
+            <div className={style["right-panel-body"]}>
+            <Handling text={name} />
+
+            {ratings && <RatingBlock ratings={ratings}/>}
+            {stores &&  <StoresBlock stores={stores} />}
+
+
+            <div className={style["infoblocks"]}>
               <div className={style["infoblock"]}>
                 <span className={style["infoblock-title"]}>Genre</span>
                 <span className={style["infoblock-text"]}>
-                  {handleBlockGenre()}
+                  {handleJoiner(genres)}
                 </span>
               </div>
 
               <div className={style["infoblock"]}>
                 <span className={style["infoblock-title"]}>Platforms</span>
                 <span className={style["infoblock-text"]}>
-                  {}
+                  {handleJoiner(platforms)}
+                </span>
+              </div>
+
+
+              <div className={style["infoblock"]}>
+                <span className={style["infoblock-title"]}>Release date</span>
+                <span className={style["infoblock-text"]}>
+                  {released && handleConvertRelease(released)}
+                </span>
+              </div>
+
+
+              <div className={style["infoblock"]}>
+                <span className={style["infoblock-title"]}>Publisher</span>
+                <span className={style["infoblock-text"]}>
+                  {handleJoiner(publishers)}
+                </span>
+              </div>
+
+              <div className={style["infoblock"]}>
+                <span className={style["infoblock-title"]}>Age rating</span>
+                <span className={style["infoblock-text"]}>
+                  {esrb_rating && esrb_rating.name}
+                </span>
+              </div>
+
+              <div className={style["infoblock"]}>
+                <span className={style["infoblock-title"]}>Playtime</span>
+                <span className={style["infoblock-text"]}>
+                  {playtime} hours
+                </span>
+              </div>
+
+              <div className={style["infoblock"]}>
+                <span className={style["infoblock-title"]}>Developers</span>
+                <span className={style["infoblock-text"]}>
+                  {handleJoiner(developers)}
                 </span>
               </div>
 
             </div>
+            </div>
           </div>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: description as string }}></div>
+        
       </div>
+     
     </div>
   );
 }

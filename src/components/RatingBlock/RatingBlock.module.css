@@ -1,0 +1,40 @@
+.ratingline{
+    display: flex;
+  }
+  
+  .point{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+  }
+  .recommended{
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#b4ec51),to(#429321));
+}
+.meh{
+    background-image: -webkit-gradient(linear,left bottom,left top,from(#4354b9),to(#649bff));
+}
+.exceptional{
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fad961),to(#f76b1c));
+}
+.skip{
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#ff5764),to(#f11a2a));
+}
+.rating-desc{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap:  50px;
+}
+.point-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.count{
+    color: hsla(0,0%,100%,.4);
+}
+.title{
+    text-transform: capitalize;
+}

@@ -1,0 +1,36 @@
+.shop{
+    font-size: 16px;
+    padding: 0 25px;
+    border-radius: 4px;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsla(0,0%,100%,.1);
+    color: hsla(0,0%,100%,.5);
+    gap: 5px;
+    transition: all .25s;
+}
+
+.shop:hover{
+    background-color: rgb(209, 208, 208);
+    color: black;
+}
+.shop:hover>.shopIcon{
+    opacity: 1;
+    filter: none;
+}
+
+.shopIcon{
+    width: 15px;
+    height: 15px;
+    filter: invert();
+    opacity: .5;
+}
+
+.shop-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}

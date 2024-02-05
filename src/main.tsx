@@ -12,7 +12,7 @@ import DetailPage from "./pages/DetailPage/DetailPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import axios from "axios";
 import { PREFIX, API_KEY } from "./helpers/API";
-import { IFilm } from "./assets/IGame";
+import { IGame } from "./assets/IGame";
 import { RequireApi } from "./helpers/RequireApi";
 
 const router = createBrowserRouter([
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         errorElement: <>Ошибка</>,
         loader: async () => {
           const { data } = await axios.get(`${PREFIX}/games?key=${API_KEY}`);
-          return data.results as IFilm[];
+          return data.results as IGame[];
         },
       },
       {
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
         path: "/movie/:id",
         element: <RequireApi><DetailPage /></RequireApi>,
         loader: async ({ params }) => {
-          const { data }: { data: IFilm } = await axios.get(
+          const { data }: { data: IGame } = await axios.get(
             `${PREFIX}/games/${params.id}?key=${API_KEY}`
           );
           return data;

@@ -13,37 +13,52 @@ export interface IGame {
   playtime?: number;
   parent_platforms?: IPlatforms[];
   genres?: IGenres[];
+  developers?: IDevelopers[];
+  publishers?: IPublishers[];
   stores?: IStores[];
   clip?: string;
   tags?: ITags[];
-  esrb_rating?: IEsrb_rating[];
+  esrb_rating?: IEsrb_rating;
   short_screenshots?: IShort_screenshots[];
 }
 
-interface IRatings {
+export interface IPublishers {
+  id:number;
+  name: string;
+}
+
+export interface IDevelopers {
+  id:number;
+  name: string;
+}
+
+export interface IRatings {
   id: number;
   title: string;
   count: number;
-  persent: number;
+  percent: number;
 }
 
-interface IPlatforms {
+export interface IPlatforms {
   platform: {
     id: number;
+    name: string;
     slug: string;
   };
 }
 
-interface IGenres {
+export interface IGenres {
   id: number;
   name: string;
 }
 
-interface IStores {
+export interface IStores {
   id: number;
   store: {
     id: number;
     name: string;
+    slug:string;
+    domain: string;
   };
 }
 
