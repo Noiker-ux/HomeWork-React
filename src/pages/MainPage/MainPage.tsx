@@ -1,32 +1,32 @@
 import { useLoaderData } from "react-router-dom";
-import FilmsList from "../../components/GamesList/GamesList";
+import GamesList from "../../components/GamesList/GamesList";
 import Search from "../../components/Search/Search";
 import { useEffect, useState } from "react";
-import { IFilm } from "../../assets/IGame";
+import { IGame } from "../../assets/IGame";
 import axios from "axios";
-import { API_KEY, PREFIX } from "../../helpers/API";
+import { API_KEY, PREFIX_LINK_TO_API } from "../../helpers/API";
 
 export default function MainPage() {
   const data = useLoaderData();
 
-  const [activeData, setActiveData] = useState<any>(data);
-  const [films, setFilms] = useState("");
+  const [activeData, setActiveData] = useState<IGame[] | unknown>(data);
+  const [game, setGames] = useState("");
 
   const loadGamesList = async () => {
     const { data } = await axios.get(
-      `${PREFIX}/games?key=${API_KEY}&search=${films}&search_exact=true`
+      `${PREFIX_LINK_TO_API}/games?key=${API_KEY}&search=${game}&search_exact=true&metacritic=10,100`
     );
     setActiveData(data.results);
   };
 
   useEffect(() => {
     loadGamesList();
-  }, [films]);
+  }, [game]);
 
   return (
     <>
-      <Search setFilms={setFilms} />
-      <FilmsList data={activeData} />
+      <Search setGames={setGames} />
+      <GamesList data={activeData} />
     </>
   );
 }

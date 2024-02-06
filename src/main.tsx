@@ -11,7 +11,7 @@ import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import DetailPage from "./pages/DetailPage/DetailPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import axios from "axios";
-import { PREFIX, API_KEY } from "./helpers/API";
+import { PREFIX_LINK_TO_API, API_KEY } from "./helpers/API";
 import { IGame } from "./assets/IGame";
 import { RequireApi } from "./helpers/RequireApi";
 
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         ),
         errorElement: <>Ошибка</>,
         loader: async () => {
-          const { data } = await axios.get(`${PREFIX}/games?key=${API_KEY}`);
+          const { data } = await axios.get(`${PREFIX_LINK_TO_API}/games?key=${API_KEY}`);
           return data.results as IGame[];
         },
       },
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         element: <RequireApi><DetailPage /></RequireApi>,
         loader: async ({ params }) => {
           const { data }: { data: IGame } = await axios.get(
-            `${PREFIX}/games/${params.id}?key=${API_KEY}`
+            `${PREFIX_LINK_TO_API}/games/${params.id}?key=${API_KEY}`
           );
           return data;
         },

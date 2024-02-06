@@ -1,4 +1,4 @@
-.film-card {
+.game-card {
   background: rgba(32, 40, 62, 0.8);
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -12,7 +12,7 @@
   border-radius: 15px;
   transition: transform 0.25s ease;
 }
-.film-card:hover {
+.game-card:hover {
   transform: scale(1.05);
   z-index: 100;
 }

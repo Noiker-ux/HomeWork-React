@@ -3,21 +3,22 @@ import Handling from "../Handling/Handling";
 import Paragraph from "../Paragraph/Paragraph";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import { useRef } from "react";
+import { MouseEvent, useRef } from "react";
 
-function Search({ setFilms }: any) {
+function Search({ setGames }: any) {
   const refInput = useRef<HTMLInputElement | null>(null);
   const refButton = useRef<HTMLButtonElement | null>(null);
 
-  const querySearch = () => {
+  const querySearch = (e: MouseEvent) => {
+    e.preventDefault();
     if (refInput.current) {
       const valueInput = refInput.current.value;
-      setFilms(valueInput);
+      setGames(valueInput);
     }
   };
 
   return (
-    <div className={style["search-block"]}>
+    <form className={style["search-block"]}>
       <Handling text="Поиск" />
       <Paragraph
         className="paragraph-small"
@@ -31,7 +32,7 @@ function Search({ setFilms }: any) {
         />
         <Button text="Искать" onClick={querySearch} ref={refButton} />
       </div>
-    </div>
+    </form>
   );
 }
 

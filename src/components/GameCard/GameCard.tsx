@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useState } from "react";
+import GameCardPoster from "../GameCardPoster/GameCardPoster";
 
 function GameCard({ props }: { props: IGame }) {
   const {
@@ -16,74 +17,33 @@ function GameCard({ props }: { props: IGame }) {
     parent_platforms,
   } = props;
 
-  // state Hoverr
+
   const [hovSlider, setHovSlider] = useState<boolean>(false);
-  // state array images for slider
-  const [slider, setSlider] = useState<any>([]);
 
-  let images: any = [];
-
-  //  function for show slider
+  
   const handleShowSlider = () => {
-    short_screenshots?.map((e) => {
-      const item = {
-        original: e.image,
-        thumbnail: e.image,
-        thumbnailHeight: 49,
-        originalHeight: 200,
-      };
-
-      images.push(item);
-    });
     setHovSlider(true);
-    setSlider(images);
   };
 
-  // functiom for close Slider
   const handleCloseSlider = () => {
     setHovSlider(false);
-    setSlider([]);
   };
 
   return (
     <Link
       to={`/movie/${id}`}
-      className={style["film-card"]}
+      className={style["game-card"]}
       onMouseOver={handleShowSlider}
       onMouseOut={handleCloseSlider}
     >
-      <div className={style["film-card-wrap"]}>
-        <div className={style["poster"]}>
-          {!hovSlider && background_image && (
-            <img
-              src={background_image}
-              alt="poster"
-              className={style["poster-img"]}
-            />
-          )}
-
-          {!hovSlider && !background_image && (
-            <img
-              src="./public/noImage.jpg"
-              alt="poster"
-              className={style["poster-img"]}
-            />
-          )}
-
-          {slider && hovSlider && background_image && (
-            <ImageGallery
-              items={slider}
-              showPlayButton={false}
-              slideInterval={2500}
-              slideOnThumbnailOver={true}
-              showIndex={false}
-              autoPlay={true}
-              showNav={false}
-              showFullscreenButton={false}
-            />
-          )}
-        </div>
-
+      <div className={style["game-card-wrap"]}>
+        {short_screenshots && background_image &&
+        <GameCardPoster 
+          background_image={background_image} 
+          short_screenshots={short_screenshots} 
+          hovSlider={hovSlider} 
+         /
+        >}
         <div className={style["info"]}>
           <div className={style["top"]}>
             <span>{released?.slice(0, 4)}</span>

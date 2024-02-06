@@ -1,0 +1,15 @@
+
+
+.infoblock {
+    display: flex;
+    flex-direction: column;
+  }
+  .infoblock-title {
+    color: #767e94;
+  }
+  .infoblock-text{
+    display: flex;
+  }
+  .infoblock-text>*{
+    margin: 0;
+  }

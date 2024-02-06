@@ -1,5 +1,3 @@
-
-import { MouseEvent, useState } from 'react';
 import { IRatings } from '../../assets/IGame';
 import RatingLine from '../RatingLine/RatingLine';
 import style from './RatingBlock.module.css';

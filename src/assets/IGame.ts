@@ -8,7 +8,7 @@ export interface IGame {
   released?: string;
   added?: number;
   description?: string;
-  platforms?: string;
+  platforms?: IPlatforms[];
   metacritic?: number;
   playtime?: number;
   parent_platforms?: IPlatforms[];
@@ -57,22 +57,24 @@ export interface IStores {
   store: {
     id: number;
     name: string;
+    url?: string;
     slug:string;
     domain: string;
   };
 }
 
-interface ITags {
+export interface ITags {
   id: number;
   name: string;
 }
 
-interface IEsrb_rating {
+export interface IEsrb_rating {
   id: number;
   name: string;
 }
 
-interface IShort_screenshots {
+export interface IShort_screenshots {
   id: number;
   image: string;
 }
+

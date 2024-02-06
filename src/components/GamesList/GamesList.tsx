@@ -7,7 +7,7 @@ import { IGame } from "../../assets/IGame";
 function GamesList({ data }: { data: any }) {
   if (!data.length) {
     return (
-      <div className={style["no-films"]}>
+      <div className={style["no-games"]}>
         <Handling text="Упс... Ничего не найдено :(" />
         <Paragraph
           text="Попробуйте изменить запрос или ввести более точное название фильма"
@@ -18,7 +18,7 @@ function GamesList({ data }: { data: any }) {
   }
 
   return (
-    <div className={style["film-list"]}>
+    <div className={style["game-list"]}>
       {data.map((game: IGame) => (
         <GameCard props={game} key={game.id} />
       ))}
