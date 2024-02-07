@@ -2,7 +2,7 @@ import { IPublishers, IDevelopers, IPlatforms, IGenres, ITags, IEsrb_rating } fr
 import style from './Infoblock.module.css'
 
 const Infoblock = ({ data, title }: {
-  data: IPublishers[] | IDevelopers[] | IPlatforms[] | IGenres[] | ITags[] | IEsrb_rating | string | number,
+  data: any,
   title:string
 }) => {
 

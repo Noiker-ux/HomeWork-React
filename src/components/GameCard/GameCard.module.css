@@ -54,6 +54,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .platforms {
@@ -72,5 +73,5 @@
 .rating-wrapper {
   display: flex;
   gap: 5px;
-  align-items: flex-start;
+  align-items: center;
 }

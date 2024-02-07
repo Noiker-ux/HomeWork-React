@@ -15,6 +15,7 @@ function GameCard({ props }: { props: IGame }) {
     short_screenshots,
     released,
     parent_platforms,
+    metacritic
   } = props;
 
 
@@ -61,7 +62,7 @@ function GameCard({ props }: { props: IGame }) {
             </div>
             <div className={style["rating-wrapper"]}>
               <img src="./public/Star.svg" alt="Star" />
-              <span>{rating}</span>
+              <span>{metacritic}</span>
             </div>
           </div>
           <p className={style["name"]}>{name}</p>
