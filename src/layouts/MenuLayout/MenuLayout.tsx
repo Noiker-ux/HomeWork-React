@@ -6,9 +6,6 @@ import styles from './MenuLayout.module.css'
 
 function MenuLayout() {
 
-	if (!localStorage.getItem('profiles')){
-		localStorage.setItem('profiles','[]');
-	}
 
 
 	return (

@@ -5,7 +5,6 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import MenuLayout from "./layouts/MenuLayout/MenuLayout";
-import { UserContextProvider } from "./context/user.context";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import DetailPage from "./pages/DetailPage/DetailPage";
@@ -14,6 +13,8 @@ import axios from "axios";
 import { PREFIX_LINK_TO_API, API_KEY } from "./helpers/API";
 import { IGame } from "./assets/IGame";
 import { RequireApi } from "./helpers/RequireApi";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -65,10 +66,12 @@ const router = createBrowserRouter([
   },
 ]);
 
+
+
 ReactDOM.createRoot(document.getElementById("root") as Element).render(
   <React.StrictMode>
-    <UserContextProvider>
-      <RouterProvider router={router} />
-    </UserContextProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
   </React.StrictMode>
 );

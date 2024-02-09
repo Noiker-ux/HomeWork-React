@@ -3,16 +3,18 @@ import style from './Authtorization.module.css';
 import Handling from '../Handling/Handling';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
-import { MouseEvent, useContext, useRef } from 'react';
-import { UserContext } from '../../context/user.context';
-import { IContextValue, IUser } from '../../context/userContext.types'
+import { MouseEvent, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { ActionStore } from '../../store/store';
+import { profileAction } from '../../store/profile.slice';
+import { gameAction } from '../../store/games.slice';
 
 
 
-function Authtorization() {
+export default function Authtorization() {
 	let navigate = useNavigate();
-	const { saveDataProfile } = useContext<IContextValue>(UserContext);
+	const dispatch = useDispatch<ActionStore>();
 
 	const refInputLog = useRef<HTMLInputElement | null>(null);
 	const refButtonLog = useRef<HTMLButtonElement | null>(null);
@@ -23,22 +25,27 @@ function Authtorization() {
 		event.preventDefault(); 
 		if (refInputLog.current){
 			const inputValue = refInputLog.current.value;
-			const haveProfile = (dataFromLocalStorage.find((e:IUser)=>e.name === inputValue));
+			const haveProfile = (dataFromLocalStorage.find((e:any)=>e.name === inputValue));
 			if (!haveProfile && inputValue.trim().length){
 				const newProfile = {
 					'name': inputValue,
-					'isLogined': true
+					'isLogined': true,
+					'myGames': []
 				};
 				dataFromLocalStorage.push(newProfile);
 				localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
-				saveDataProfile(newProfile);
+				dispatch(profileAction.login({'name': inputValue, 'isLogined': true}))
+				dispatch(gameAction.login({games: []}))
 			} else {
-				const idProfile = dataFromLocalStorage.findIndex((e:IUser) => e.name === inputValue);
+				const idProfile = dataFromLocalStorage.findIndex((e:any) => e.name === inputValue);
 				let stateProfile = dataFromLocalStorage[idProfile];
 				stateProfile.isLogined = true;
 				dataFromLocalStorage[idProfile].isLogined=true;
 				localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
-				saveDataProfile(stateProfile);
+				dispatch(profileAction.login({'name': inputValue, 'isLogined': true}))
+				console.log(dataFromLocalStorage[idProfile].myGames);
+				
+				dispatch(gameAction.login({games: dataFromLocalStorage[idProfile].myGames}))
 			}
 			refInputLog.current.value = '';
 			navigate("/");
@@ -56,4 +63,3 @@ function Authtorization() {
 	);
 }
 
-export default Authtorization;

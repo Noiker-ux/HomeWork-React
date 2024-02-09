@@ -1,26 +1,31 @@
 
 import style from './Menu.module.css';
-import {  IContextValue } from '../../context/userContext.types';
-import { UserContext } from '../../context/user.context';
-import { MouseEvent, useContext } from 'react';
-import { IUser } from '../../context/userContext.types'
+import { MouseEvent, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { ActionStore, RootState } from '../../store/store';
+import { ISliceProfile, profileAction } from '../../store/profile.slice';
+import { gameAction } from '../../store/games.slice';
 
 function Menu() {
 	let navigate = useNavigate();
-	const { profile, saveDataProfile } = useContext<IContextValue>(UserContext);
+	const { name, isLogined} = useSelector((s:RootState) => s.profile)
+	const dispatch = useDispatch<ActionStore>();
+	const favoriteGames = useSelector((s:RootState) => s.games.games)
 
 	const exit = (e:MouseEvent) => {
 		e.preventDefault();
 		let dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles') || '[]');
-		const idProfile = dataFromLocalStorage.findIndex((elprofile:IUser) => elprofile.name===profile.name);
+		const idProfile = dataFromLocalStorage.findIndex((elprofile:ISliceProfile) => elprofile.name===name);
 		dataFromLocalStorage[idProfile].isLogined=false;
 		localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
-		saveDataProfile({'name': null, isLogined:false});
+		dispatch(profileAction.logout())
+		dispatch(gameAction.logout())
 		navigate("/login");
 	};
+
 
 	return (
 		<nav className={style['menu']}>
@@ -32,22 +37,26 @@ function Menu() {
 						Поиск игр
 					</NavLink>
 				</li>
-				<li className={style['menu-item']}>
+				
+				
+				{isLogined && <li className={style['menu-item']}>
 					<NavLink to={'/favorites'} className={({ isActive }) => classNames(style['menu-link'], {
 						[style.active]:isActive
 					})}>
 						Мои игры
-						<span className={style['counter']}>2</span>
+						<span className={style['counter']}>{favoriteGames.length}</span>
 					</NavLink>
-				</li>
+				</li>}
+
+
 				<li className={style['menu-item']}>
 					<NavLink to={'/profile'} className={({ isActive }) => classNames(style['menu-link'], {
 						[style.active]:isActive
 					})}>
-						{profile.name}{profile.isLogined && <img src="./public/UserRounded.svg" />}
+						{name}{isLogined && <img src="./public/UserRounded.svg" />}
 					</NavLink>
 				</li>
-				{!profile.isLogined?<>
+				{!isLogined?<>
 					<li className={style['menu-item']}>
 					<NavLink  to={'/login'} className={({ isActive }) => classNames(style['menu-link'],{
 						[style.active]:isActive
