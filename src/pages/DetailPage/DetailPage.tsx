@@ -45,6 +45,9 @@ export default function DetailPage() {
   {title:"Developers",data:developers},
   {title:"Tags",data:tags},
 ]
+console.log(data);
+
+
 
   return (
     <div className={style["detail"]}>
@@ -83,7 +86,8 @@ export default function DetailPage() {
             <div className={style["right-panel-body"]}>
             <Handling text={name} className="small"/>
             {ratings && <RatingBlock ratings={ratings}/>}
-            {stores &&  <StoresBlock stores={stores} id={id} />}
+            {stores &&  <StoresBlock stores={stores} id={id} name={name}/>}
+           
             <div className={style['infoblocks']}>
               {infoblockArray.map(e =>  (
                 <Infoblock data={e.data} title={e.title} />

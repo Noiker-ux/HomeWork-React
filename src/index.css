@@ -39,3 +39,6 @@ a{
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
+.image-gallery-slide .image-gallery-image{
+  object-fit: cover !important;
+}

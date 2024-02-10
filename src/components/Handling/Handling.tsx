@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 function Handling({ text, className }:{ text: string, className?:string}) {
 	return (
-		<h1 className={classNames(style['handling'], style[`${className}`])}>{text}</h1>
+		<h1 className={classNames(style['handling'], className && style[`${className}`])}>{text}</h1>
 	);
 }
 

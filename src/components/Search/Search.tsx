@@ -12,7 +12,7 @@ function Search({ setGames }: any) {
   const querySearch = (e: MouseEvent) => {
     e.preventDefault();
     if (refInput.current) {
-      const valueInput = refInput.current.value;
+      const valueInput = refInput.current.value.trim();
       setGames(valueInput);
     }
   };

@@ -9,7 +9,6 @@ export interface ISliceProfile {
 const initialState: ISliceProfile = {
     name: '',
     isLogined: false,
-
 }
 
 

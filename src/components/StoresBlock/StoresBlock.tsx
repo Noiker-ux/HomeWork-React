@@ -4,7 +4,7 @@ import { IStores } from "../../assets/IGame";
 import { PREFIX_LINK_TO_API, API_KEY } from "../../helpers/API";
 import style from './StoresBlock.module.css'
 
-const StoresBlock = ({ stores, id }: {stores: IStores[], id:number}) => {
+const StoresBlock = ({ stores, id, name }: {stores: IStores[], id:number, name: string}) => {
     const [store, setStores] = useState([]);
 
     const getStoresLinks = async() => {
@@ -29,6 +29,7 @@ const StoresBlock = ({ stores, id }: {stores: IStores[], id:number}) => {
         <img className={style['shopIcon']} src={`/public/storeIcons/${e.store.slug}.svg`} alt={e.store.name}/>
         {e.store.name}
     </a>)}
+    <a href={`https://thelastgame.ru/${name.split(' ').join('-')}`} className={style['shop']}><img className={style['shopIcon']} src="/public/storeIcons/utorrent.svg" alt="uTorrent"/>uTorrent</a>
     </div>
 }
 

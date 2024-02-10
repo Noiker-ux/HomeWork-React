@@ -8,7 +8,7 @@ interface IParagraphProps {
 
 function Paragraph({ text, className }:IParagraphProps) {
 	return (
-		<p className={classnames(style['paragraph'], (className?style[className]:''))}>{text}</p>
+		<p className={classnames(style['paragraph'], (className && style[className]))}>{text}</p>
 	);
 }
 

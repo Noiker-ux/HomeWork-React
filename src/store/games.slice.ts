@@ -1,13 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IGame } from "../assets/IGame";
 
 interface IGames {
-    games: number[];
+    games: IGame[];
 }
 
 const setInitData = () => {
     const dataFromLocalStorage = localStorage.getItem('profiles');
     if (!dataFromLocalStorage){
-        localStorage.setItem('profiles','[]');
         return {games:[]};
     }
     const parseArr = JSON.parse(dataFromLocalStorage);
@@ -16,10 +16,7 @@ const setInitData = () => {
         return {games:[]};
     }
     return {games: authProfile.myGames};
-    
 }
-
-
 
 
 export const gameSlice = createSlice({
@@ -32,19 +29,11 @@ export const gameSlice = createSlice({
        login: (state, action:PayloadAction<IGames>) => {
         state.games = action.payload.games; 
        },
-       add: (state, action:PayloadAction<number>) => {
-        const inFavorite = state.games.find((el:number) => { return el==action.payload});
-            if (inFavorite){
-                return;
-            }
-            state.games.push(action.payload);
+       add: (state, action:PayloadAction<IGame>) => {
+        state.games.push(action.payload);
        },
        remove: (state, action:PayloadAction<number>) => {
-        const inFavorite = state.games.findIndex((el:number) => { return el==action.payload});
-        if (inFavorite!=-1){
-            state.games.splice(state.games[inFavorite],1);
-        }
-        return;
+        state.games = state.games.filter((e:IGame) => e.id != action.payload)
        }
     }
 })

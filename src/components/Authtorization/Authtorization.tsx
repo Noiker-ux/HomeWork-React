@@ -19,7 +19,7 @@ export default function Authtorization() {
 	const refInputLog = useRef<HTMLInputElement | null>(null);
 	const refButtonLog = useRef<HTMLButtonElement | null>(null);
 
-	let dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles') || '[]');
+	let dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles') as string);
 
 	const handleAuth = (event:MouseEvent) => {
 		event.preventDefault(); 
@@ -43,8 +43,6 @@ export default function Authtorization() {
 				dataFromLocalStorage[idProfile].isLogined=true;
 				localStorage.setItem('profiles', JSON.stringify(dataFromLocalStorage));
 				dispatch(profileAction.login({'name': inputValue, 'isLogined': true}))
-				console.log(dataFromLocalStorage[idProfile].myGames);
-				
 				dispatch(gameAction.login({games: dataFromLocalStorage[idProfile].myGames}))
 			}
 			refInputLog.current.value = '';

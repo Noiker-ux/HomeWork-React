@@ -12,9 +12,10 @@ export default function MainPage() {
   const [activeData, setActiveData] = useState<IGame[] | unknown>(data);
   const [game, setGames] = useState("");
 
+  
   const loadGamesList = async () => {
     const { data } = await axios.get(
-      `${PREFIX_LINK_TO_API}/games?key=${API_KEY}&search=${game}&search_exact=true&metacritic=10,100`
+      `${PREFIX_LINK_TO_API}/games?key=${API_KEY}&search=${game}&search_exact=true`
     );
     setActiveData(data.results);
   };

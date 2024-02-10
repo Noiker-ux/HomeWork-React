@@ -15,6 +15,7 @@ import { IGame } from "./assets/IGame";
 import { RequireApi } from "./helpers/RequireApi";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import Error404 from "./pages/Error404/Error404";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         ),
         errorElement: <>Ошибка</>,
         loader: async () => {
-          const { data } = await axios.get(`${PREFIX_LINK_TO_API}/games?key=${API_KEY}`);
+          const { data } = await axios.get(`${PREFIX_LINK_TO_API}/games?key=${API_KEY}&dates=2024-01-01,2024-12-31`);
           return data.results as IGame[];
         },
       },
@@ -58,11 +59,11 @@ const router = createBrowserRouter([
           return data;
         },
       },
+      {
+        path: "*",
+        element: <Error404 />,
+      }
     ],
-  },
-  {
-    path: "*",
-    element: "*",
   },
 ]);
 

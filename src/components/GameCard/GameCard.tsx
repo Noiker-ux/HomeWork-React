@@ -1,7 +1,6 @@
 import style from "./GameCard.module.css";
 import { IGame } from "../../assets/IGame";
 import { Link } from "react-router-dom";
-import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { MouseEvent, useState } from "react";
 import GameCardPoster from "../GameCardPoster/GameCardPoster";
@@ -21,11 +20,9 @@ function GameCard({ props }: { props: IGame }) {
   } = props;
 
   const dispatch = useDispatch<ActionStore>(); 
-  const games = useSelector((s:RootState) => s.games.games)
-
   const [hovSlider, setHovSlider] = useState<boolean>(false);
+  const games = useSelector((s:RootState) => s.games.games);
 
-  
   const handleShowSlider = () => {
     setHovSlider(true);
   };
@@ -37,22 +34,21 @@ function GameCard({ props }: { props: IGame }) {
   const add = (e: MouseEvent) => {
     e.preventDefault();
     const profiles = localStorage.getItem('profiles');
-    if (profiles){
-
-      let arrProfile = JSON.parse(profiles);
-      const idx = arrProfile.findIndex((e:any) => {return e.isLogined==true})
-      const have = arrProfile[idx].myGames.findIndex((e:number) => {return  e == id})
-      if (have==-1){
-        arrProfile[idx].myGames.push(id);
+    let arrProfile = JSON.parse(profiles as string);
+    const idxProfile = arrProfile.findIndex((e:any) => {return e.isLogined==true})
+    const idxGameInFavorite = arrProfile[idxProfile].myGames.findIndex((e:IGame) => {return  e.id == id})
+      if (idxGameInFavorite==-1){
+        arrProfile[idxProfile].myGames.push(props);
         localStorage.setItem('profiles', JSON.stringify(arrProfile))
-        dispatch(gameAction.add(id));
+        dispatch(gameAction.add({
+          ...props
+        }));
       } else {
-        arrProfile[idx].myGames.splice(have,1);
+        arrProfile[idxProfile].myGames.splice(idxGameInFavorite,1);
         localStorage.setItem('profiles', JSON.stringify(arrProfile))
         dispatch(gameAction.remove(id));
       }
-    }
-    return;
+    
   }
 
   return (
@@ -92,8 +88,8 @@ function GameCard({ props }: { props: IGame }) {
           </div>
           <p className={style["name"]}>{name}</p>
           <div className={style["like-wrapper"]}>
-            <img src="./public/like.svg" alt="Like" />
-            <a href="#" onClick={add}>{'sas'}</a>
+            {games.find((e:IGame)=> {return e.id == id})?<img src="./public/Bookmark.svg" alt="Bookmark"/>:<img src="./public/like.svg" alt="Like"/>}
+            <a href="#" onClick={add}>{games.find((e:IGame)=> {return e.id == id})?<span className={style['myGame']}>В избранном</span>:<span>В избранное</span>}</a>
           </div>
         </div>
       </div>

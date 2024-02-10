@@ -17,6 +17,7 @@ function GamesList({ data }: { data: any }) {
     );
   }
 
+
   return (
     <div className={style["game-list"]}>
       {data.map((game: IGame) => (
