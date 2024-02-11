@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         element: <RequireApi><ProfilePage /></RequireApi>,
       },
       {
-        path: "/movie/:id",
+        path: "/games/:id",
         element: <RequireApi><DetailPage /></RequireApi>,
         loader: async ({ params }) => {
           const { data }: { data: IGame } = await axios.get(
@@ -58,6 +58,7 @@ const router = createBrowserRouter([
           );
           return data;
         },
+        errorElement: <>Ошибка</>
       },
       {
         path: "*",

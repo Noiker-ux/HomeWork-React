@@ -3,19 +3,33 @@ import Handling from "../Handling/Handling";
 import Paragraph from "../Paragraph/Paragraph";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import { MouseEvent, useRef } from "react";
+import { MouseEvent, useRef, useState } from "react";
 
-function Search({ setGames }: any) {
+function Search({ loadGamesList, skipSearch }: any) {
   const refInput = useRef<HTMLInputElement | null>(null);
   const refButton = useRef<HTMLButtonElement | null>(null);
+  const refButtonSearch = useRef<HTMLButtonElement | null>(null);
 
-  const querySearch = (e: MouseEvent) => {
+
+  const [search, setSearch] = useState<boolean>(false);
+
+  const querySearch = async (e: MouseEvent) => {
     e.preventDefault();
     if (refInput.current) {
       const valueInput = refInput.current.value.trim();
-      setGames(valueInput);
-    }
+      if (valueInput){
+        setSearch(true)
+        await loadGamesList(valueInput);
+      }
+    } 
   };
+
+  const dropSearch = (e: MouseEvent) => {
+    e.preventDefault();
+    skipSearch();
+    setSearch(false)
+  }
+
 
   return (
     <form className={style["search-block"]}>
@@ -32,6 +46,7 @@ function Search({ setGames }: any) {
         />
         <Button text="Искать" onClick={querySearch} ref={refButton} />
       </div>
+      {search && <Button text="Сбросить поиск" onClick={dropSearch} ref={refButtonSearch} />}
     </form>
   );
 }

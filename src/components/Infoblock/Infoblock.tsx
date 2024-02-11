@@ -17,13 +17,15 @@ const handleJoiner = (data: any) => {
     if (typeof data === 'string' || typeof data === 'number'){
       return String(data);
     }
-    if (instanceofIPlatforms(data[0])){
-      data.map((el:any) => resArr.push(el.platform.name))
-    } else{
-      data.map((el:any) => resArr.push(el.name))
+    if (data.length){
+      if (instanceofIPlatforms(data[0])){
+        data.map((el:IPlatforms) => resArr.push(el.platform.name))
+      } else{
+        data.map((el:any) => resArr.push(el.name))
+      }
+      return resArr.join(', ')
     }
-    return resArr.join(', ')
-  }
+}
 
   return  <div className={style["infoblock"]}>
     <span className={style["infoblock-title"]}>{title}</span>

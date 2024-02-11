@@ -18,7 +18,7 @@ export interface IGame {
   stores?: IStores[];
   clip?: string;
   tags?: ITags[];
-  esrb_rating?: IEsrb_rating;
+  esrb_rating?: IEsrb_rating | null;
   short_screenshots?: IShort_screenshots[];
 }
 

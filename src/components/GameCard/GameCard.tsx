@@ -53,7 +53,7 @@ function GameCard({ props }: { props: IGame }) {
 
   return (
     <Link
-      to={`/movie/${id}`}
+      to={`/games/${id}`}
       className={style["game-card"]}
       onMouseOver={handleShowSlider}
       onMouseOut={handleCloseSlider}

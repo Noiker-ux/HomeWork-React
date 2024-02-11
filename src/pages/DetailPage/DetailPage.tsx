@@ -40,10 +40,10 @@ export default function DetailPage() {
   {title:"Released",data:released },
   {title:"Publishers",data:publishers },
   {title:"Platforms",data:platforms},
-  {title:"Age rating",data:esrb_rating!.name},
+  {title:"Age rating",data:esrb_rating?esrb_rating.name:''},
   {title:"Playtime",data:playtime },
   {title:"Developers",data:developers},
-  {title:"Tags",data:tags},
+  // {title:"Tags",data:tags},
 ]
 console.log(data);
 
