@@ -13,6 +13,7 @@ function instanceofIPlatforms (data: any): data is IPlatforms{
 
 
 const handleJoiner = (data: any) => {
+  if(data){
     let resArr: string[] = [];
     if (typeof data === 'string' || typeof data === 'number'){
       return String(data);
@@ -25,6 +26,7 @@ const handleJoiner = (data: any) => {
       }
       return resArr.join(', ')
     }
+  }
 }
 
   return  <div className={style["infoblock"]}>

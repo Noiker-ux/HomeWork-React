@@ -23,7 +23,7 @@ const GameCardPoster = ({ background_image, short_screenshots, hovSlider }:{
 
           
 
-    return <div className={style["poster"]}>
+    return (<div className={style["poster"]}>
           {!hovSlider && background_image && (
             <img
               src={background_image}
@@ -53,7 +53,7 @@ const GameCardPoster = ({ background_image, short_screenshots, hovSlider }:{
             />
           )}
         </div>
-
+    )
 }
 
 export default GameCardPoster;

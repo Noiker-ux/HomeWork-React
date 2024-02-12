@@ -1,8 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IGame } from "../assets/IGame";
 
 interface IGames {
-    games: IGame[];
+    games: number[];
 }
 
 const setInitData = () => {
@@ -29,11 +28,11 @@ export const gameSlice = createSlice({
        login: (state, action:PayloadAction<IGames>) => {
         state.games = action.payload.games; 
        },
-       add: (state, action:PayloadAction<IGame>) => {
+       add: (state, action:PayloadAction<number>) => {
         state.games.push(action.payload);
        },
        remove: (state, action:PayloadAction<number>) => {
-        state.games = state.games.filter((e:IGame) => e.id != action.payload)
+        state.games = state.games.filter((e:number) => e != action.payload)
        }
     }
 })

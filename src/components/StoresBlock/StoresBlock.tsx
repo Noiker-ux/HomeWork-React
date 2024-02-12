@@ -19,7 +19,7 @@ const StoresBlock = ({ stores, id, name }: {stores: IStores[], id:number, name: 
    useEffect(() => {
     getStoresLinks()
    }, [])
-//    store.find((el) => {el.i})
+
 
     return <div className={style['shop-wrapper']}>
     {stores.map((e:IStores) => <a className={style['shop']} 
@@ -29,7 +29,6 @@ const StoresBlock = ({ stores, id, name }: {stores: IStores[], id:number, name: 
         <img className={style['shopIcon']} src={`/public/storeIcons/${e.store.slug}.svg`} alt={e.store.name}/>
         {e.store.name}
     </a>)}
-    <a href={`https://thelastgame.ru/${name.split(' ').join('-')}`} className={style['shop']}><img className={style['shopIcon']} src="/public/storeIcons/utorrent.svg" alt="uTorrent"/>uTorrent</a>
     </div>
 }
 

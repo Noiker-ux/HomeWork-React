@@ -9,6 +9,7 @@ import StoresBlock from "../../components/StoresBlock/StoresBlock";
 import classNames from "classnames";
 import Infoblock from "../../components/Infoblock/Infoblock";
 import { handleConvertRelease } from '../../helpers/ConvertData'
+import { handleConvertRating } from "../../helpers/ConvertRating";
 
 
 export default function DetailPage() {
@@ -28,7 +29,7 @@ export default function DetailPage() {
     stores,
     playtime,
     ratings,
-    tags,
+    rating,
     developers,
     metacritic
   } = detail;
@@ -37,12 +38,12 @@ export default function DetailPage() {
 
   const infoblockArray = [
   {title:"Genres",data:genres},
-  {title:"Released",data:released },
-  {title:"Publishers",data:publishers },
+  released?{title:"Released",data:released }:'',
+  publishers?.length?{title:"Publishers",data:publishers }:'',
   {title:"Platforms",data:platforms},
-  {title:"Age rating",data:esrb_rating?esrb_rating.name:''},
-  {title:"Playtime",data:playtime },
-  {title:"Developers",data:developers},
+  esrb_rating?{title:"Age rating",data:esrb_rating.name}:'',
+  playtime?{title:"Playtime",data:playtime }:'',
+  developers?.length?{title:"Developers",data:developers}:'',
   // {title:"Tags",data:tags},
 ]
 console.log(data);
@@ -81,7 +82,7 @@ console.log(data);
               </div>
               <span className={style['playtime']}>AVERAGE PLAYTIME: {playtime} HOURS</span>
               </div>
-              <span className={style['rating']}><img src="/public/star.svg" alt='star'/>{metacritic}</span>
+              <span className={style['rating']}><img src="/public/star.svg" alt='star'/>{metacritic?metacritic:handleConvertRating(rating as number)}</span>
             </div>
             <div className={style["right-panel-body"]}>
             <Handling text={name} className="small"/>
@@ -89,7 +90,7 @@ console.log(data);
             {stores &&  <StoresBlock stores={stores} id={id} name={name}/>}
            
             <div className={style['infoblocks']}>
-              {infoblockArray.map(e =>  (
+              {infoblockArray.filter(e => e!=='').map(e =>  (
                 <Infoblock data={e.data} title={e.title} />
               ))}
             </div>

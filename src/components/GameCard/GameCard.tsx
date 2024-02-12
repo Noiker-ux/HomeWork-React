@@ -7,6 +7,7 @@ import GameCardPoster from "../GameCardPoster/GameCardPoster";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionStore, RootState } from "../../store/store";
 import { gameAction } from "../../store/games.slice";
+import { handleConvertRating } from "../../helpers/ConvertRating";
 
 function GameCard({ props }: { props: IGame }) {
   const {
@@ -16,8 +17,11 @@ function GameCard({ props }: { props: IGame }) {
     short_screenshots,
     released,
     parent_platforms,
-    metacritic
+    metacritic,
+    rating
   } = props;
+
+  console.log(props)
 
   const dispatch = useDispatch<ActionStore>(); 
   const [hovSlider, setHovSlider] = useState<boolean>(false);
@@ -36,20 +40,19 @@ function GameCard({ props }: { props: IGame }) {
     const profiles = localStorage.getItem('profiles');
     let arrProfile = JSON.parse(profiles as string);
     const idxProfile = arrProfile.findIndex((e:any) => {return e.isLogined==true})
-    const idxGameInFavorite = arrProfile[idxProfile].myGames.findIndex((e:IGame) => {return  e.id == id})
+    const idxGameInFavorite = arrProfile[idxProfile].myGames.findIndex((e:number) => {return  e == id})
       if (idxGameInFavorite==-1){
-        arrProfile[idxProfile].myGames.push(props);
+        arrProfile[idxProfile].myGames.push(id);
         localStorage.setItem('profiles', JSON.stringify(arrProfile))
-        dispatch(gameAction.add({
-          ...props
-        }));
+        dispatch(gameAction.add(id));
       } else {
         arrProfile[idxProfile].myGames.splice(idxGameInFavorite,1);
         localStorage.setItem('profiles', JSON.stringify(arrProfile))
         dispatch(gameAction.remove(id));
       }
-    
   }
+  
+
 
   return (
     <Link
@@ -83,13 +86,13 @@ function GameCard({ props }: { props: IGame }) {
             </div>
             <div className={style["rating-wrapper"]}>
               <img src="./public/Star.svg" alt="Star" />
-              <span>{metacritic}</span>
+              <span>{metacritic?metacritic:handleConvertRating(rating as number)}</span>
             </div>
           </div>
           <p className={style["name"]}>{name}</p>
           <div className={style["like-wrapper"]}>
-            {games.find((e:IGame)=> {return e.id == id})?<img src="./public/Bookmark.svg" alt="Bookmark"/>:<img src="./public/like.svg" alt="Like"/>}
-            <a href="#" onClick={add}>{games.find((e:IGame)=> {return e.id == id})?<span className={style['myGame']}>В избранном</span>:<span>В избранное</span>}</a>
+            {games.find((e:number)=> {return e == id})?<img src="./public/Bookmark.svg" alt="Bookmark"/>:<img src="./public/like.svg" alt="Like"/>}
+            <a href="#" onClick={add}>{games.find((e:number)=> {return e == id})?<span className={style['myGame']}>В избранном</span>:<span>В избранное</span>}</a>
           </div>
         </div>
       </div>

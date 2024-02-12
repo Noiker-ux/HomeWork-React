@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/favorites",
-        element: <RequireApi><FavoritesPage /></RequireApi>,
+        element: <RequireApi><Suspense fallback={<>Загрузка...</>}><FavoritesPage /></Suspense></RequireApi>,
       },
       {
         path: "/profile",
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
           );
           return data;
         },
-        errorElement: <>Ошибка</>
+        errorElement: <>Ошибка загрузки детальной страницы</>
       },
       {
         path: "*",

@@ -31,7 +31,7 @@ function Search({ loadGamesList, skipSearch }: any) {
   }
 
 
-  return (
+  return (<div className={style["wrap"]}>
     <form className={style["search-block"]}>
       <Handling text="Поиск" />
       <Paragraph
@@ -46,8 +46,10 @@ function Search({ loadGamesList, skipSearch }: any) {
         />
         <Button text="Искать" onClick={querySearch} ref={refButton} />
       </div>
-      {search && <Button text="Сбросить поиск" onClick={dropSearch} ref={refButtonSearch} />}
+      
     </form>
+    {search && <Button className={style['skip']} text="Сбросить поиск" onClick={dropSearch} ref={refButtonSearch} />}
+    </div>
   );
 }
 

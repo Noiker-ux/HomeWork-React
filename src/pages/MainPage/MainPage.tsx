@@ -5,7 +5,6 @@ import { useState } from "react";
 import { IGame } from "../../assets/IGame";
 import axios from "axios";
 import { API_KEY, PREFIX_LINK_TO_API } from "../../helpers/API";
-import Filter from "../../components/Filter/Filter";
 
 export default function MainPage() {
   const data = useLoaderData();
@@ -26,7 +25,6 @@ export default function MainPage() {
   return (
     <>
       <Search loadGamesList={loadGamesList}  skipSearch={skipSearch}/>
-      {/* <Filter /> */}
       <GamesList data={activeData} />
     </>
   );
