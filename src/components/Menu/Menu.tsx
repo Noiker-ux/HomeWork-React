@@ -56,21 +56,18 @@ function Menu() {
 						{name}{isLogined && <img src="./public/UserRounded.svg" />}
 					</NavLink>
 				</li>
-				{!isLogined?<>
-					<li className={style['menu-item']}>
+				{!isLogined?<li className={style['menu-item']}>
 					<NavLink  to={'/login'} className={({ isActive }) => classNames(style['menu-link'],{
 						[style.active]:isActive
 					})}>
 						Войти
 						<img src="./Login.svg" alt="Войти" />
 					</NavLink>
-				</li>
-				</>:<>
-				<li onClick={exit} className={style['menu-item']}>
+				</li>:<li onClick={exit} className={style['menu-item']}>
 					<a className={style['menu-link']} onClick={exit} href='/'>Выйти</a>
 					<img src="./Login.svg" alt="Войти" />
 				</li>
-				</>}
+				}
 	
 			</ul>
 		</nav>
