@@ -11,7 +11,7 @@ const Input = forwardRef<HTMLInputElement, IPropsInput>(function Input({icon, pl
 	return (
 		<div className={style['input-wrapper']}>
 			<img src={icon} alt="Поиск" className={icon ? style['placeholder-icon']:style['no-icon']} />
-			<input ref={ref} className={classnames(style['input'], icon?style['has-icon']:'')} placeholder={placeholder}  {...props} />
+			<input ref={ref} className={classnames(style['input'], icon && style['has-icon'])} placeholder={placeholder}  {...props} />
 		</div>
 	);
 });

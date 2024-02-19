@@ -82,7 +82,9 @@ console.log(data);
               </div>
               <span className={style['playtime']}>AVERAGE PLAYTIME: {playtime} HOURS</span>
               </div>
-              <span className={style['rating']}><img src="/public/star.svg" alt='star'/>{metacritic?metacritic:handleConvertRating(rating as number)}</span>
+              <span className={style['rating']}><img src="/public/star.svg" alt='star'/>
+                {metacritic ? metacritic : handleConvertRating(rating as number)}
+              </span>
             </div>
             <div className={style["right-panel-body"]}>
             <Handling text={name} className="small"/>

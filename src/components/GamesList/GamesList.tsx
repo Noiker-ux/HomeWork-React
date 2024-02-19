@@ -5,6 +5,7 @@ import Paragraph from "../Paragraph/Paragraph";
 import { IGame } from "../../assets/IGame";
 
 function GamesList({ data }: { data: IGame[] }) {
+  
   if (!data.length) {
     return (
       <div className={style["no-games"]}>
@@ -16,7 +17,6 @@ function GamesList({ data }: { data: IGame[] }) {
       </div>
     );
   }
-
 
   return (
     <div className={style["game-list"]}>

@@ -1,4 +1,4 @@
-import { IPublishers, IDevelopers, IPlatforms, IGenres, ITags, IEsrb_rating } from '../../assets/IGame';
+import { IPlatforms } from '../../assets/IGame';
 import style from './Infoblock.module.css'
 
 const Infoblock = ({ data, title }: {
@@ -11,13 +11,14 @@ function instanceofIPlatforms (data: any): data is IPlatforms{
 }
 
 
-
 const handleJoiner = (data: any) => {
   if(data){
     let resArr: string[] = [];
+
     if (typeof data === 'string' || typeof data === 'number'){
       return String(data);
     }
+
     if (data.length){
       if (instanceofIPlatforms(data[0])){
         data.map((el:IPlatforms) => resArr.push(el.platform.name))

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { IShort_screenshots } from "../../assets/IGame";
 import style from './GameCardPoster.module.css'
 import ImageGallery from "react-image-gallery";

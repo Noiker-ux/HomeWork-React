@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ActionStore, RootState } from "../../store/store";
 import { gameAction } from "../../store/games.slice";
 import { handleConvertRating } from "../../helpers/ConvertRating";
+import ILocalStorage from "../../helpers/ILocalStorage";
 
 function GameCard({ props }: { props: IGame }) {
   const {
@@ -39,9 +40,9 @@ function GameCard({ props }: { props: IGame }) {
     e.preventDefault();
     const profiles = localStorage.getItem('profiles');
     let arrProfile = JSON.parse(profiles as string);
-    const idxProfile = arrProfile.findIndex((e:any) => {return e.isLogined==true})
-    const idxGameInFavorite = arrProfile[idxProfile].myGames.findIndex((e:number) => {return  e == id})
-      if (idxGameInFavorite==-1){
+    const idxProfile = arrProfile.findIndex((e:ILocalStorage) => { return e.isLogined == true })
+    const idxGameInFavorite = arrProfile[idxProfile].myGames.findIndex((e:number) => { return  e == id })
+      if (idxGameInFavorite == -1){
         arrProfile[idxProfile].myGames.push(id);
         localStorage.setItem('profiles', JSON.stringify(arrProfile))
         dispatch(gameAction.add(id));
@@ -66,15 +67,13 @@ function GameCard({ props }: { props: IGame }) {
         <GameCardPoster 
           background_image={background_image} 
           short_screenshots={short_screenshots} 
-          hovSlider={hovSlider} 
-         /
+          hovSlider={hovSlider}/
         >}
         <div className={style["info"]}>
           <div className={style["top"]}>
             <span>{released?.slice(0, 4)}</span>
             <div className={style["platforms"]}>
-              {parent_platforms
-                ? parent_platforms.map((e) => (
+              {parent_platforms && parent_platforms.map((e) => (
                     <img
                       key={e.platform.id}
                       className={style["platformIco"]}
@@ -82,17 +81,24 @@ function GameCard({ props }: { props: IGame }) {
                       alt={e.platform.slug}
                     />
                   ))
-                : ""}
+                }
             </div>
             <div className={style["rating-wrapper"]}>
               <img src="./public/Star.svg" alt="Star" />
-              <span>{metacritic?metacritic:handleConvertRating(rating as number)}</span>
+              <span>{metacritic ? metacritic : handleConvertRating(rating as number)}</span>
             </div>
           </div>
           <p className={style["name"]}>{name}</p>
           <div className={style["like-wrapper"]}>
-            {games.find((e:number)=> {return e == id})?<img src="./public/Bookmark.svg" alt="Bookmark"/>:<img src="./public/like.svg" alt="Like"/>}
-            <a href="#" onClick={add}>{games.find((e:number)=> {return e == id})?<span className={style['myGame']}>В избранном</span>:<span>В избранное</span>}</a>
+            {games.find((e:number)=> { return e == id })?
+              <img src="./public/Bookmark.svg" alt="Bookmark"/>:
+              <img src="./public/like.svg" alt="Like"/>
+            }
+            <a href="#" onClick={add}>
+              {games.find((e:number)=> { return e == id })?
+              <span className={style['myGame']}>В избранном</span>:
+              <span>В избранное</span>}
+            </a>
           </div>
         </div>
       </div>

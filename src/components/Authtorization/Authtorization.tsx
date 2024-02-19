@@ -25,7 +25,8 @@ export default function Authtorization() {
 		event.preventDefault(); 
 		if (refInputLog.current){
 			const inputValue = refInputLog.current.value;
-			const haveProfile = (dataFromLocalStorage.find((e:any)=>e.name === inputValue));
+			const haveProfile = (dataFromLocalStorage.find((e:any) => e.name === inputValue ));
+
 			if (!haveProfile && inputValue.trim().length){
 				const newProfile = {
 					'name': inputValue,
@@ -48,7 +49,7 @@ export default function Authtorization() {
 			refInputLog.current.value = '';
 			navigate("/");
 		} else {
-			console.log('Ошибка авторизации')
+			console.error('Ошибка авторизации')
 		}
 	};
 

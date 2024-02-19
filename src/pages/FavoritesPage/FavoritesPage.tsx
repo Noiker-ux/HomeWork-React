@@ -11,6 +11,7 @@ import { useEffect, useState } from "react"
 export default function FavoritesPage () {
     const favoriteArrGames = useSelector((s:RootState) => s.games.games)
     const [favorite,setfavorite] = useState<IGame[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const getItem = async(idGame:number) => {
         const { data } = await axios.get<IGame>(`${PREFIX_LINK_TO_API}/games/${idGame}?key=${API_KEY}`)
@@ -24,10 +25,11 @@ export default function FavoritesPage () {
         return data.results;
     }
 
-
     const getAllItems = async () => {
+        setLoading(true)
         const result = await Promise.all(favoriteArrGames.map((i:number) => getItem(i)));
         setfavorite(result)
+        setLoading(false)
     }
 
     useEffect(()=>{
@@ -35,7 +37,10 @@ export default function FavoritesPage () {
     },[favoriteArrGames])
     
     return <div>
-        <Handling text="Избранное"></Handling>
-        <GamesList data={favorite}/>
+        {!loading && <>
+            <Handling text="Избранное"></Handling>
+            <GamesList data={favorite}/>
+        </>}
+        {loading && <>Загружаем список ихбранного</>}
     </div>
 }

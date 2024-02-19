@@ -25,7 +25,7 @@ export default function MainPage() {
   return (
     <>
       <Search loadGamesList={loadGamesList}  skipSearch={skipSearch}/>
-      <GamesList data={activeData} />
+      <GamesList data={activeData as IGame[]} />
     </>
   );
 }
