@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
-import style from './Menu.module.css'
+import style from '../Menu.module.css'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../store/store'
+import { RootState } from '../../../store/store'
 
 export default function Favorite () {
 	const favoriteGames = useSelector((s:RootState) => s.games.games)

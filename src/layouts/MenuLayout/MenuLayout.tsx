@@ -5,9 +5,6 @@ import classNames from 'classnames';
 import styles from './MenuLayout.module.css'
 
 function MenuLayout() {
-
-
-
 	return (
         <>
 		<header>

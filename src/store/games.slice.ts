@@ -1,16 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import ILocalStorage from '../helpers/ILocalStorage';
 
 interface IGames {
     games: number[];
 }
 
 const setInitData = () => {
-    const dataFromLocalStorage = localStorage.getItem('profiles');
-    if (!dataFromLocalStorage){
-        return {games:[]};
+    if (localStorage.getItem('profiles') === null) {
+        localStorage.setItem('profiles','[]');
     }
-    const parseArr = JSON.parse(dataFromLocalStorage);
-    const authProfile = parseArr.find((el:any) => { return (el.isLogined === true)})
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles') as string);
+    const authProfile = dataFromLocalStorage.find((el:ILocalStorage) => el.isLogined)
     if (!authProfile){
         return {games:[]};
     }

@@ -31,24 +31,22 @@ export default function DetailPage() {
     ratings,
     rating,
     developers,
-    metacritic
+    metacritic,
+    tags
   } = detail;
 
 
 
   const infoblockArray = [
-  {title:"Genres",data:genres},
+  genres?.length?{title:"Genres",data:genres}:'',
   released?{title:"Released",data:released }:'',
   publishers?.length?{title:"Publishers",data:publishers }:'',
-  {title:"Platforms",data:platforms},
+  platforms?.length?{title:"Platforms",data:platforms}:'',
   esrb_rating?{title:"Age rating",data:esrb_rating.name}:'',
   playtime?{title:"Playtime",data:playtime }:'',
   developers?.length?{title:"Developers",data:developers}:'',
-  // {title:"Tags",data:tags},
+  tags?.length?{title:"Tags",data:tags}:''
 ]
-console.log(data);
-
-
 
   return (
     <div className={style["detail"]}>
@@ -92,9 +90,12 @@ console.log(data);
             {stores &&  <StoresBlock stores={stores} id={id} name={name}/>}
            
             <div className={style['infoblocks']}>
-              {infoblockArray.filter(e => e!=='').map(e =>  (
-                <Infoblock data={e.data} title={e.title} />
-              ))}
+              {infoblockArray
+              .filter(e => e!=='')
+              .map(e => (
+                  <Infoblock data={e.data} title={e.title} />
+                )
+              )}
             </div>
           </div>
         </div>

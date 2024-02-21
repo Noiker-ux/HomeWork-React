@@ -13,13 +13,8 @@ const initialState: ISliceProfile = {
 
 
 const getInit = () => {
-    const dataFromLocalStorage = localStorage.getItem('profiles');
-    if (!dataFromLocalStorage){
-        localStorage.setItem('profiles','[]');
-        return initialState;
-    }
-    const parseArr = JSON.parse(dataFromLocalStorage);
-    const authProfile = parseArr.find((el:ISliceProfile) => { return el.isLogined === true})
+    const parseArr = JSON.parse(localStorage.getItem('profiles') as string);
+    const authProfile = parseArr.find((el:ISliceProfile) => el.isLogined)
     if(!authProfile){
         return initialState;
     }

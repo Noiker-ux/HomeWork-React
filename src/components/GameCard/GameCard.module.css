@@ -35,16 +35,6 @@
   color: #fff;
 }
 
-.like-wrapper {
-  display: flex;
-  margin-top: 16px;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px; /* 150% */
-  letter-spacing: 0.32px;
-}
 
 .name {
   font-weight: 700;
@@ -76,11 +66,4 @@
   display: flex;
   gap: 5px;
   align-items: center;
-}
-
-.myGame{
-  color: aquamarine;
-}
-.activeLike{
-  filter: hue-rotate(270deg);
 }

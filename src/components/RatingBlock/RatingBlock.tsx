@@ -10,14 +10,13 @@ const RatingBlock = ({ ratings }:{ ratings: IRatings[]}) => {
             {ratings && ratings.map((e:IRatings) => <RatingLine key={e.id} percent={e.percent} count={e.count} title={e.title} />)}
         </div>
         <div className={style['rating-desc']}>
-            {ratings && ratings.map((e:IRatings) => <div 
-            key={e.id} 
-            className={style['point-wrapper']}
-            >
-                <span className={classNames(style[`point`], style[`${e.title}`])}></span>
-                <span className={style['title']}>{e.title}</span>
-                <span className={style['count']}>{e.count}</span>
-            </div>)}
+            {ratings && ratings.map((e:IRatings) => 
+                <div key={e.id} className={style['point-wrapper']}>
+                    <span className={classNames(style[`point`], style[`${e.title}`])}></span>
+                    <span className={style['title']}>{e.title}</span>
+                    <span className={style['count']}>{e.count}</span>
+                </div>
+            )}
         </div>
     </div>
 );}

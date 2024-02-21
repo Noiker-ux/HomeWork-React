@@ -12,23 +12,18 @@ export interface IGame {
   metacritic?: number;
   playtime?: number;
   parent_platforms?: IPlatforms[];
-  genres?: IGenres[];
-  developers?: IDevelopers[];
-  publishers?: IPublishers[];
+  genres?: INameWithId[];
+  developers?: INameWithId[];
+  publishers?: INameWithId[];
   stores?: IStores[];
   clip?: string;
-  tags?: ITags[];
-  esrb_rating?: IEsrb_rating | null;
+  tags?: INameWithId[];
+  esrb_rating?: INameWithId | null;
   short_screenshots?: IShort_screenshots[];
 }
 
-export interface IPublishers {
-  id:number;
-  name: string;
-}
-
-export interface IDevelopers {
-  id:number;
+export interface INameWithId{
+  id: number;
   name: string;
 }
 
@@ -47,10 +42,6 @@ export interface IPlatforms {
   };
 }
 
-export interface IGenres {
-  id: number;
-  name: string;
-}
 
 export interface IStores {
   id: number;
@@ -59,18 +50,7 @@ export interface IStores {
     name: string;
     url?: string;
     slug:string;
-    domain: string;
   };
-}
-
-export interface ITags {
-  id: number;
-  name: string;
-}
-
-export interface IEsrb_rating {
-  id: number;
-  name: string;
 }
 
 export interface IShort_screenshots {

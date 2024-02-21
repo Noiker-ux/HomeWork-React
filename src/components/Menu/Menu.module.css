@@ -16,7 +16,7 @@
 
     transition: color 0.25s;
 }
-.menu-link:hover{
+.menu-link:hover{ 
     color: #fff
 }
 

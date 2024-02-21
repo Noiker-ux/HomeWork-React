@@ -10,7 +10,6 @@ export default function MainPage() {
   const data = useLoaderData();
   const [activeData, setActiveData] = useState<IGame[] | unknown>(data);
 
-
   const loadGamesList = async (game:string) => {
     const { data } = await axios.get(
       `${PREFIX_LINK_TO_API}/games?key=${API_KEY}&search=${game}&search_exact=true`

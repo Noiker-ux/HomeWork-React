@@ -28,6 +28,10 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "stylelint": "^16.2.1",
+    "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.1.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.8"
   }

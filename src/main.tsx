@@ -17,6 +17,8 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import Error404 from "./pages/Error404/Error404";
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -70,10 +72,14 @@ const router = createBrowserRouter([
 
 
 
+
+
 ReactDOM.createRoot(document.getElementById("root") as Element).render(
   <React.StrictMode>
       <Provider store={store}>
         <RouterProvider router={router} />
       </Provider>
   </React.StrictMode>
+
+  
 );

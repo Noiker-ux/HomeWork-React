@@ -1,10 +1,9 @@
 import { IPlatforms } from '../../assets/IGame';
 import style from './Infoblock.module.css'
+import { IInfoblockProps } from './Infoblock.props';
 
-const Infoblock = ({ data, title }: {
-  data: any,
-  title:string
-}) => {
+
+const Infoblock = ({ data, title }: IInfoblockProps) => {
 
 function instanceofIPlatforms (data: any): data is IPlatforms{
   return "platform" in data;

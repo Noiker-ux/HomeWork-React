@@ -2,14 +2,22 @@ import { IShort_screenshots } from "../../assets/IGame";
 import style from './GameCardPoster.module.css'
 import ImageGallery from "react-image-gallery";
 
-const GameCardPoster = ({ background_image, short_screenshots, hovSlider }:{
+interface IPoster {
     background_image: string;
-    short_screenshots: IShort_screenshots[];
+    short_screenshots?: IShort_screenshots[];
     hovSlider: boolean;
-}) => {
+}
 
+interface IScreenShotsImages {
+    original: string,
+    thumbnail: string,
+    thumbnailHeight: number,
+    originalHeight: number
+}
+
+const GameCardPoster = ({ background_image, short_screenshots, hovSlider }:IPoster) => {
+    let images: IScreenShotsImages[] = [];
     
-    let images: any = [];
     short_screenshots?.map((e:IShort_screenshots) => {
         const item = {
           original: e.image,

@@ -2,13 +2,10 @@ import style from "./GameCard.module.css";
 import { IGame } from "../../assets/IGame";
 import { Link } from "react-router-dom";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 import GameCardPoster from "../GameCardPoster/GameCardPoster";
-import { useDispatch, useSelector } from "react-redux";
-import { ActionStore, RootState } from "../../store/store";
-import { gameAction } from "../../store/games.slice";
 import { handleConvertRating } from "../../helpers/ConvertRating";
-import ILocalStorage from "../../helpers/ILocalStorage";
+import FavoriteButton from './FavoriteButton/FavoriteButton';
 
 function GameCard({ props }: { props: IGame }) {
   const {
@@ -22,11 +19,7 @@ function GameCard({ props }: { props: IGame }) {
     rating
   } = props;
 
-  console.log(props)
-
-  const dispatch = useDispatch<ActionStore>(); 
   const [hovSlider, setHovSlider] = useState<boolean>(false);
-  const games = useSelector((s:RootState) => s.games.games);
 
   const handleShowSlider = () => {
     setHovSlider(true);
@@ -36,25 +29,7 @@ function GameCard({ props }: { props: IGame }) {
     setHovSlider(false);
   };
 
-  const add = (e: MouseEvent) => {
-    e.preventDefault();
-    const profiles = localStorage.getItem('profiles');
-    let arrProfile = JSON.parse(profiles as string);
-    const idxProfile = arrProfile.findIndex((e:ILocalStorage) => { return e.isLogined == true })
-    const idxGameInFavorite = arrProfile[idxProfile].myGames.findIndex((e:number) => { return  e == id })
-      if (idxGameInFavorite == -1){
-        arrProfile[idxProfile].myGames.push(id);
-        localStorage.setItem('profiles', JSON.stringify(arrProfile))
-        dispatch(gameAction.add(id));
-      } else {
-        arrProfile[idxProfile].myGames.splice(idxGameInFavorite,1);
-        localStorage.setItem('profiles', JSON.stringify(arrProfile))
-        dispatch(gameAction.remove(id));
-      }
-  }
   
-
-
   return (
     <Link
       to={`/games/${id}`}
@@ -89,17 +64,7 @@ function GameCard({ props }: { props: IGame }) {
             </div>
           </div>
           <p className={style["name"]}>{name}</p>
-          <div className={style["like-wrapper"]}>
-            {games.find((e:number)=> { return e == id })?
-              <img src="./public/Bookmark.svg" alt="Bookmark"/>:
-              <img src="./public/like.svg" alt="Like"/>
-            }
-            <a href="#" onClick={add}>
-              {games.find((e:number)=> { return e == id })?
-              <span className={style['myGame']}>В избранном</span>:
-              <span>В избранное</span>}
-            </a>
-          </div>
+          <FavoriteButton idGame={id}/>
         </div>
       </div>
     </Link>

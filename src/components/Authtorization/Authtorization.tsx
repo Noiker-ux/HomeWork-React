@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { ActionStore } from '../../store/store';
 import { profileAction } from '../../store/profile.slice';
 import { gameAction } from '../../store/games.slice';
-
+import ILocalStorage from '../../helpers/ILocalStorage';
 
 
 export default function Authtorization() {
@@ -17,16 +17,13 @@ export default function Authtorization() {
 	const dispatch = useDispatch<ActionStore>();
 
 	const refInputLog = useRef<HTMLInputElement | null>(null);
-	const refButtonLog = useRef<HTMLButtonElement | null>(null);
-
-	let dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles') as string);
 
 	const handleAuth = (event:MouseEvent) => {
 		event.preventDefault(); 
+		let dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles') as string);
 		if (refInputLog.current){
 			const inputValue = refInputLog.current.value;
-			const haveProfile = (dataFromLocalStorage.find((e:any) => e.name === inputValue ));
-
+			const haveProfile = (dataFromLocalStorage.find((e:ILocalStorage) => e.name === inputValue ));
 			if (!haveProfile && inputValue.trim().length){
 				const newProfile = {
 					'name': inputValue,
@@ -38,7 +35,7 @@ export default function Authtorization() {
 				dispatch(profileAction.login({'name': inputValue, 'isLogined': true}))
 				dispatch(gameAction.login({games: []}))
 			} else {
-				const idProfile = dataFromLocalStorage.findIndex((e:any) => e.name === inputValue);
+				const idProfile = dataFromLocalStorage.findIndex((e:ILocalStorage) => e.name === inputValue);
 				let stateProfile = dataFromLocalStorage[idProfile];
 				stateProfile.isLogined = true;
 				dataFromLocalStorage[idProfile].isLogined=true;
@@ -57,7 +54,7 @@ export default function Authtorization() {
 		<form className={style['auth-block']}>
 			<Handling text="Вход" />
 			<Input placeholder='Ваше имя' ref={refInputLog}/>
-			<Button text='Войти в профиль' ref={refButtonLog} onClick={handleAuth}/>
+			<Button text='Войти в профиль' onClick={handleAuth}/>
 		</form>
 	);
 }
