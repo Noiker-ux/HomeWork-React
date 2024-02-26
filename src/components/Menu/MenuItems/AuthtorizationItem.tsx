@@ -7,13 +7,13 @@ import { gameAction } from "../../../store/games.slice"
 import { ISliceProfile, profileAction } from "../../../store/profile.slice"
 import { MouseEvent } from 'react'
 
-export default function Exit () {
-    const { name, isLogined} = useSelector((s:RootState) => s.profile)
+export default function AuthtorizationItem () {
+    const { name, isLogined } = useSelector((s:RootState) => s.profile)
 	
     const dispatch = useDispatch<ActionStore>();
     const navigate = useNavigate()
 
-    const exit = (e: MouseEvent) => {
+    const handleClickExit = (e: MouseEvent) => {
 		e.preventDefault();
 		let dataFromLocalStorage = JSON.parse(localStorage.getItem('profiles') as string);
 		const idProfile = dataFromLocalStorage.findIndex((elprofile:ISliceProfile) => elprofile.name === name);
@@ -33,8 +33,8 @@ export default function Exit () {
 					Войти
 					<img src="./Login.svg" alt="Войти" />
 				</NavLink>
-			</li>:<li onClick={exit} className={style['menu-item']}>
-				<a className={style['menu-link']} onClick={exit} href='/'>Выйти</a>
+			</li>:<li onClick={handleClickExit} className={style['menu-item']}>
+				<a className={style['menu-link']} href='/'>Выйти</a>
 				<img src="./Login.svg" alt="Войти" />
 			</li>
 			}

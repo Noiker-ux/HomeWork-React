@@ -13,7 +13,7 @@ function Search({ loadGamesList, skipSearch }: any) {
 
   const [search, setSearch] = useState<boolean>(false);
 
-  const querySearch = async (e: MouseEvent) => {
+  const handleClickSearch = async (e: MouseEvent) => {
     e.preventDefault();
     if (refInput.current) {
       const valueInput = refInput.current.value.trim();
@@ -24,7 +24,7 @@ function Search({ loadGamesList, skipSearch }: any) {
     } 
   };
 
-  const dropSearch = (e: MouseEvent) => {
+  const handleClickStopSearch = (e: MouseEvent) => {
     e.preventDefault();
     skipSearch();
     setSearch(false)
@@ -44,11 +44,11 @@ function Search({ loadGamesList, skipSearch }: any) {
           icon="./search.svg"
           ref={refInput}
         />
-        <Button text="Искать" onClick={querySearch} ref={refButton} />
+        <Button text="Искать" onClick={handleClickSearch} ref={refButton} />
       </div>
       
     </form>
-    {search && <Button className={style['skip']} text="Сбросить поиск" onClick={dropSearch} ref={refButtonSearch} />}
+    {search && <Button className={style['skip']} text="Сбросить поиск" onClick={handleClickStopSearch} ref={refButtonSearch} />}
     </div>
   );
 }

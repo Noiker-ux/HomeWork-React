@@ -6,6 +6,7 @@ import style from '../Menu.module.css'
 
 export default function Profile() {
 	const { name, isLogined} = useSelector((s:RootState) => s.profile)
+	
 	return (
 		<li className={style['menu-item']}>
 			<NavLink to={'/profile'} className={({ isActive }) => classNames(style['menu-link'], {

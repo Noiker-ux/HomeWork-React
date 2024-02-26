@@ -7,7 +7,13 @@ const RatingBlock = ({ ratings }:{ ratings: IRatings[]}) => {
     return (
     <div className={style['rating']}>
         <div className={style['ratingline']}>
-            {ratings && ratings.map((e:IRatings) => <RatingLine key={e.id} percent={e.percent} count={e.count} title={e.title} />)}
+            {ratings && ratings.map((e:IRatings) => 
+                <RatingLine 
+                    key={e.id} 
+                    percent={e.percent} 
+                    count={e.count} 
+                    title={e.title} 
+                />)}
         </div>
         <div className={style['rating-desc']}>
             {ratings && ratings.map((e:IRatings) => 

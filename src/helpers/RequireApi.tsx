@@ -13,6 +13,5 @@ export const RequireApi = ({ children }: {children: ReactNode}) => {
         return children;
     } else {
         return <Navigate to='/login' replace/>
-    }
-    
+    }  
 }

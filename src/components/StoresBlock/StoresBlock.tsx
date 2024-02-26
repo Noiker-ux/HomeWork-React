@@ -22,10 +22,11 @@ const StoresBlock = ({ stores, id, name }: {stores: IStores[], id:number, name: 
 
 
     return <div className={style['shop-wrapper']}>
-    {stores.map((e:IStores) => <a className={style['shop']} 
-        key={e.id} 
-        href={e.store.url}
-    >
+    {stores.map((e:IStores) => 
+        <a  className={style['shop']} 
+            key={e.id} 
+            href={e.store.url}
+        >
         <img className={style['shopIcon']} src={`/public/storeIcons/${e.store.slug}.svg`} alt={e.store.name}/>
         {e.store.name}
     </a>)}

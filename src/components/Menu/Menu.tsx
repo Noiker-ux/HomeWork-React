@@ -1,6 +1,6 @@
 
 import style from './Menu.module.css';
-import Exit from './MenuItems/Exit';
+import AuthtorizationItem from './MenuItems/AuthtorizationItem';
 import Favorite from './MenuItems/Favorite';
 import Profile from './MenuItems/Profile';
 import SearchGames from './MenuItems/Search';
@@ -12,7 +12,7 @@ function Menu() {
 				<SearchGames />
 				<Favorite />
 				<Profile />
-				<Exit />
+				<AuthtorizationItem />
 			</ul>
 		</nav>
 	);
