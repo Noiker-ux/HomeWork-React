@@ -1,0 +1,25 @@
+.rating-item{
+    height: 30px;
+}
+
+.rating-item:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.rating-item:last-child{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.recommended{
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#b4ec51),to(#429321));
+}
+.meh{
+    background-image: -webkit-gradient(linear,left bottom,left top,from(#4354b9),to(#649bff));
+}
+.exceptional{
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fad961),to(#f76b1c));
+}
+.skip{
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#ff5764),to(#f11a2a));
+}

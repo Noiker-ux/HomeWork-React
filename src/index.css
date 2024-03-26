@@ -1,0 +1,44 @@
+:root {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-image: url('./Background.png');
+  background-color: rgba(18, 24, 41, 0.80);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+.container{
+  max-width: 1440px;
+  padding: 0 120px;
+  margin: 0 auto;
+}
+
+
+a{
+  text-decoration: none;
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.image-gallery-slides{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.image-gallery-slide .image-gallery-image{
+  object-fit: cover !important;
+}

@@ -1,0 +1,18 @@
+header{
+    background: rgba(18, 24, 41, 0.80);
+    backdrop-filter: blur(20px); 
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+.header-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.menu-list{
+    display: flex;
+    gap: 16px;
+}
+.outlet{
+    margin-top: 120px;
+}
